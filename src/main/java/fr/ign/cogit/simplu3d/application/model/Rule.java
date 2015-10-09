@@ -1,4 +1,4 @@
-package fr.ign.cogit.simplu3d.model.application;
+package fr.ign.cogit.simplu3d.application.model;
 
 import tudresden.ocl20.pivot.pivotmodel.Constraint;
 /**

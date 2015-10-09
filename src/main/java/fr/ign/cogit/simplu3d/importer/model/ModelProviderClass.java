@@ -4,6 +4,9 @@ package fr.ign.cogit.simplu3d.importer.model;
 import fr.ign.cogit.geoxygene.api.spatial.geomprim.IOrientableSurface;
 import fr.ign.cogit.geoxygene.api.spatial.geomroot.IGeometry;
 import fr.ign.cogit.geoxygene.spatial.coordgeom.GM_Polygon;
+import fr.ign.cogit.simplu3d.application.model.EnvironnementOCL;
+import fr.ign.cogit.simplu3d.application.model.Rule;
+import fr.ign.cogit.simplu3d.application.model.UrbaZoneOCL;
 import fr.ign.cogit.simplu3d.model.application.AbstractBuilding;
 import fr.ign.cogit.simplu3d.model.application.Alignement;
 import fr.ign.cogit.simplu3d.model.application.BasicPropertyUnit;
@@ -36,7 +39,7 @@ import fr.ign.cogit.simplu3d.model.application.UrbaZone;
  * @version 1.0
  **/
 public class ModelProviderClass {
-  protected UrbaZone zone;
+
   protected CadastralParcel parcelle;
   protected Building sousParcelle;
   protected SpecificWallSurface facade;
@@ -55,5 +58,8 @@ public class ModelProviderClass {
   protected BuildingPart bp;
   protected Recoil recoil;
   protected Alignement alignement;
+  protected EnvironnementOCL env;
+  protected Rule rule;
+  protected UrbaZoneOCL u;
 
 }

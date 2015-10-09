@@ -1,20 +1,21 @@
-package fr.ign.cogit.simplu3d.importer.applicationClasses;
+package fr.ign.cogit.simplu3d.importer;
 
 import java.io.File;
 import java.util.List;
 
+import fr.ign.cogit.simplu3d.application.model.EnvironnementOCL;
+import fr.ign.cogit.simplu3d.application.model.Rule;
+import fr.ign.cogit.simplu3d.application.model.UrbaZoneOCL;
 import tudresden.ocl20.pivot.pivotmodel.Constraint;
 import tudresden.ocl20.pivot.standalone.facade.StandaloneFacade;
-import fr.ign.cogit.simplu3d.model.application.Environnement;
-import fr.ign.cogit.simplu3d.model.application.Rule;
-import fr.ign.cogit.simplu3d.model.application.UrbaZone;
+
 /**
  * 
- *        This software is released under the licence CeCILL
+ * This software is released under the licence CeCILL
  * 
- *        see LICENSE.TXT
+ * see LICENSE.TXT
  * 
- *        see <http://www.cecill.info/ http://www.cecill.info/
+ * see <http://www.cecill.info/ http://www.cecill.info/
  * 
  * 
  * 
@@ -26,35 +27,34 @@ import fr.ign.cogit.simplu3d.model.application.UrbaZone;
  **/
 public class RulesImporter {
 
-  public static void importer(String folder, UrbaZone z) {
-    // on charge le fichier OCL du nom de la zone
-    File f = new File(folder + z.getLibelle() + ".ocl");
+	public static void importer(String folder, UrbaZoneOCL z) {
+		// on charge le fichier OCL du nom de la zone
+		File f = new File(folder + z.getLibelle() + ".ocl");
 
-    // System.out.println("Trying to load : " + f.getAbsolutePath());
+		// System.out.println("Trying to load : " + f.getAbsolutePath());
 
-    if (f.exists()) {
-      try {
-        List<Constraint> lC = StandaloneFacade.INSTANCE.parseOclConstraints(
-            Environnement.getModel(), f);
+		if (f.exists()) {
+			try {
+				List<Constraint> lC = StandaloneFacade.INSTANCE.parseOclConstraints(EnvironnementOCL.getModel(), f);
 
-        int id = 0;
+				int id = 0;
 
-        for (Constraint c : lC) {
+				for (Constraint c : lC) {
 
-          Rule r = new Rule(c, (++id) + "");
-          z.getRules().add(r);
+					Rule r = new Rule(c, (++id) + "");
+					z.getRules().add(r);
 
-        }
+				}
 
-      } catch (Exception e) {
-        // TODO Auto-generated catch block
-        e.printStackTrace();
-      
-        System.exit(1);
-      }
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
 
-    }
+				System.exit(1);
+			}
 
-  }
+		}
+
+	}
 
 }

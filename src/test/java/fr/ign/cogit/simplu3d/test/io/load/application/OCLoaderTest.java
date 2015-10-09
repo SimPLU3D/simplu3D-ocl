@@ -28,7 +28,7 @@ public class OCLoaderTest {
   public void testImport() {
 
     oclConstraints = new File(
-        "src/test/resources/ocl/ocl/simple_allConstraintsThese.ocl");
+        "src/test/resources/fr/ign/cogit/simplu3d/data/simple_allConstraintsThese.ocl");
 
     try {
 

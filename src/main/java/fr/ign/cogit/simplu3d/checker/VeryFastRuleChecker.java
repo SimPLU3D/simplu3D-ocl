@@ -3,6 +3,13 @@ package fr.ign.cogit.simplu3d.checker;
 import java.util.ArrayList;
 import java.util.List;
 
+import fr.ign.cogit.simplu3d.application.model.EnvironnementOCL;
+import fr.ign.cogit.simplu3d.application.model.Rule;
+import fr.ign.cogit.simplu3d.application.model.UrbaZoneOCL;
+import fr.ign.cogit.simplu3d.importer.model.ImportModelInstanceBasicPropertyUnit;
+import fr.ign.cogit.simplu3d.model.application.BasicPropertyUnit;
+import fr.ign.cogit.simplu3d.model.application.CadastralParcel;
+import fr.ign.cogit.simplu3d.model.application.SubParcel;
 import tudresden.ocl20.pivot.essentialocl.standardlibrary.OclBoolean;
 import tudresden.ocl20.pivot.interpreter.IInterpretationResult;
 import tudresden.ocl20.pivot.interpreter.IOclInterpreter;
@@ -13,12 +20,6 @@ import tudresden.ocl20.pivot.modelinstancetype.types.IModelInstanceElement;
 import tudresden.ocl20.pivot.modelinstancetype.types.IModelInstanceObject;
 import tudresden.ocl20.pivot.pivotmodel.Constraint;
 import tudresden.ocl20.pivot.simplu3d.OCLInterpreterSimplu3D;
-import fr.ign.cogit.simplu3d.importer.model.ImportModelInstanceBasicPropertyUnit;
-import fr.ign.cogit.simplu3d.model.application.BasicPropertyUnit;
-import fr.ign.cogit.simplu3d.model.application.CadastralParcel;
-import fr.ign.cogit.simplu3d.model.application.Environnement;
-import fr.ign.cogit.simplu3d.model.application.Rule;
-import fr.ign.cogit.simplu3d.model.application.SubParcel;
 
 /**
  * 
@@ -62,12 +63,15 @@ public class VeryFastRuleChecker {
     return lFalseArray;
   }
 
-  public VeryFastRuleChecker(BasicPropertyUnit bPU) {
+  public VeryFastRuleChecker(BasicPropertyUnit bPU, UrbaZoneOCL uz) {
     this.bPU = bPU;
+    this.uz = uz;
     init(bPU);
   }
 
   private BasicPropertyUnit bPU;
+  private UrbaZoneOCL uz;
+
 
   public boolean check(List<IModelInstanceObject> newBuildings) {
     // System.out.println(lModeInstance.get(0).getAllModelInstanceObjects().size());
@@ -78,10 +82,9 @@ public class VeryFastRuleChecker {
      */
     int numberOfSubParcels = sPList.size();
     for (int sPIndex = 0; sPIndex < numberOfSubParcels; sPIndex++) {
-      SubParcel sP = sPList.get(sPIndex);
       evalCount++;
       int count = 0;
-      for (Rule rule : sP.getUrbaZone().getRules()) {
+      for (Rule rule : uz.getRules()) {
         for (IModelInstanceObject imiObject : lRelevantObjects) {
           boolean isOk = interpret(imiObject, lModelInterpreter.get(sPIndex), rule.constraint);
           if (!isOk) {
@@ -110,7 +113,7 @@ public class VeryFastRuleChecker {
       for (SubParcel sP : cP.getSubParcel()) {
         sPList.add(sP);
         IModelInstance iM = ImportModelInstanceBasicPropertyUnit
-            .generateModelInstance(Environnement.getModel());
+            .generateModelInstance(EnvironnementOCL.getModel());
         lModelInstance.add(iM);
         try {
           lRelevantObjects.add(ImportModelInstanceBasicPropertyUnit
@@ -126,7 +129,7 @@ public class VeryFastRuleChecker {
     int nbInt = sPList.size();
     for (int i = 0; i < nbInt; i++) {
       lFalseArray.add(new ArrayList<Integer>());
-      int sizeTemp = sPList.get(i).getUrbaZone().getRules().size();
+      int sizeTemp = 	uz.getRules().size();
       for (int j = 0; j < sizeTemp; j++) {
         lFalseArray.get(i).add(0);
       }

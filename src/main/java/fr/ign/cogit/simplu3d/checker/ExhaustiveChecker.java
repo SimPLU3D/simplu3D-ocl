@@ -3,6 +3,13 @@ package fr.ign.cogit.simplu3d.checker;
 import java.util.ArrayList;
 import java.util.List;
 
+import fr.ign.cogit.simplu3d.application.model.EnvironnementOCL;
+import fr.ign.cogit.simplu3d.application.model.Rule;
+import fr.ign.cogit.simplu3d.application.model.UrbaZoneOCL;
+import fr.ign.cogit.simplu3d.importer.model.ImportModelInstanceBasicPropertyUnit;
+import fr.ign.cogit.simplu3d.model.application.BasicPropertyUnit;
+import fr.ign.cogit.simplu3d.model.application.CadastralParcel;
+import fr.ign.cogit.simplu3d.model.application.SubParcel;
 import tudresden.ocl20.pivot.essentialocl.standardlibrary.OclBoolean;
 import tudresden.ocl20.pivot.interpreter.IInterpretationResult;
 import tudresden.ocl20.pivot.interpreter.IOclInterpreter;
@@ -13,21 +20,14 @@ import tudresden.ocl20.pivot.modelinstancetype.types.IModelInstanceElement;
 import tudresden.ocl20.pivot.modelinstancetype.types.IModelInstanceObject;
 import tudresden.ocl20.pivot.pivotmodel.Constraint;
 import tudresden.ocl20.pivot.simplu3d.OCLInterpreterSimplu3D;
-import fr.ign.cogit.simplu3d.importer.model.ImportModelInstanceBasicPropertyUnit;
-import fr.ign.cogit.simplu3d.model.application.BasicPropertyUnit;
-import fr.ign.cogit.simplu3d.model.application.CadastralParcel;
-import fr.ign.cogit.simplu3d.model.application.Environnement;
-import fr.ign.cogit.simplu3d.model.application.Rule;
-import fr.ign.cogit.simplu3d.model.application.SubParcel;
-
 
 /**
  * 
- *        This software is released under the licence CeCILL
+ * This software is released under the licence CeCILL
  * 
- *        see LICENSE.TXT
+ * see LICENSE.TXT
  * 
- *        see <http://www.cecill.info/ http://www.cecill.info/
+ * see <http://www.cecill.info/ http://www.cecill.info/
  * 
  * 
  * 
@@ -37,164 +37,157 @@ import fr.ign.cogit.simplu3d.model.application.SubParcel;
  * 
  * @version 1.0
  *
- * Classe permettant la vérification des règles d'urbanisme sur une unité
- * foncière
+ *          Classe permettant la vérification des règles d'urbanisme sur une
+ *          unité foncière
  */
 public class ExhaustiveChecker {
 
-  private List<SubParcel> sPList = new ArrayList<SubParcel>();
-  private List<IModelInstanceObject> lRelevantObjects = new ArrayList<>();
-  private List<IOclInterpreter> lModelInterpreter = new ArrayList<>();
-  
-  private List<IModelInstance> lModelInstance = new ArrayList<>();
+	private List<SubParcel> sPList = new ArrayList<SubParcel>();
+	private List<IModelInstanceObject> lRelevantObjects = new ArrayList<>();
+	private List<IOclInterpreter> lModelInterpreter = new ArrayList<>();
 
-  public int evalCount = 0;
-  public int evalFalse = 0;
+	private List<IModelInstance> lModelInstance = new ArrayList<>();
 
-  public List<List<Integer>> lFalseArray = new ArrayList<>();
+	public int evalCount = 0;
+	public int evalFalse = 0;
 
-  public int getEvalCount() {
-    return evalCount;
-  }
+	public List<List<Integer>> lFalseArray = new ArrayList<>();
 
-  public int getEvalFalse() {
-    return evalFalse;
-  }
+	public int getEvalCount() {
+		return evalCount;
+	}
 
-  public List<List<Integer>> getlFalseArray() {
-    return lFalseArray;
-  }
+	public int getEvalFalse() {
+		return evalFalse;
+	}
 
-  public ExhaustiveChecker(BasicPropertyUnit bPU) {
-    this.bPU = bPU;
-    init(bPU);
-  }
+	public List<List<Integer>> getlFalseArray() {
+		return lFalseArray;
+	}
 
-  private BasicPropertyUnit bPU;
+	/**
+	 * @TODO : to complete when a BPU is on several uz
+	 * @param bPU
+	 * @param uz
+	 */
+	public ExhaustiveChecker(BasicPropertyUnit bPU, UrbaZoneOCL uz) {
+		this.bPU = bPU;
+		this.uz = uz;
+		init(bPU);
+	}
 
-  public boolean check(List<IModelInstanceObject> newBuildings) {
+	private BasicPropertyUnit bPU;
 
-    int numberOfSubParcels = sPList.size();
-    for (int sPIndex = 0; sPIndex < numberOfSubParcels; sPIndex++) {
-      SubParcel sP = sPList.get(sPIndex);
-      evalCount++;
-      int count = 0;
-      for (Rule rule : sP.getUrbaZone().getRules()) {
-        for (IModelInstanceObject imiObject : lRelevantObjects) {
-          boolean isOk = interpret(imiObject, lModelInterpreter.get(sPIndex),
-              rule.constraint);
-          if (!isOk) {
-            lFalseArray.get(sPIndex).set(count,
-                lFalseArray.get(sPIndex).get(count) + 1);
-            evalFalse++;
+	public boolean check(List<IModelInstanceObject> newBuildings) {
 
-          }
-        }
-        for (IModelInstanceObject imiObject : newBuildings) {
-          boolean isOk = interpret(imiObject, lModelInterpreter.get(sPIndex),
-              rule.constraint);
-          if (!isOk) {
-            lFalseArray.get(sPIndex).set(count,
-                lFalseArray.get(sPIndex).get(count) + 1);
-            evalFalse++;
+		int numberOfSubParcels = sPList.size();
+		for (int sPIndex = 0; sPIndex < numberOfSubParcels; sPIndex++) {
+			evalCount++;
+			int count = 0;
+			for (Rule rule : uz.getRules()) {
+				for (IModelInstanceObject imiObject : lRelevantObjects) {
+					boolean isOk = interpret(imiObject, lModelInterpreter.get(sPIndex), rule.constraint);
+					if (!isOk) {
+						lFalseArray.get(sPIndex).set(count, lFalseArray.get(sPIndex).get(count) + 1);
+						evalFalse++;
 
-          }
-        }
-        count++;
-      }
-    }
-    return true;
-  }
+					}
+				}
+				for (IModelInstanceObject imiObject : newBuildings) {
+					boolean isOk = interpret(imiObject, lModelInterpreter.get(sPIndex), rule.constraint);
+					if (!isOk) {
+						lFalseArray.get(sPIndex).set(count, lFalseArray.get(sPIndex).get(count) + 1);
+						evalFalse++;
 
-  private void init(BasicPropertyUnit bPU) {
-    new OclInterpreterPlugin();
-    for (CadastralParcel cP : bPU.getCadastralParcel()) {
-      for (SubParcel sP : cP.getSubParcel()) {
-        sPList.add(sP);
-        IModelInstance iM = ImportModelInstanceBasicPropertyUnit
-            .generateModelInstance(Environnement.getModel());
+					}
+				}
+				count++;
+			}
+		}
+		return true;
+	}
 
-        lModelInstance.add(iM);
-        try {
-          ImportModelInstanceBasicPropertyUnit.importCadastralSubParcel(iM, sP);
-          iM.addModelInstanceElement(bPU);
-          ImportModelInstanceBasicPropertyUnit.importCadastralParcel(iM, cP);
-        } catch (TypeNotFoundInModelException e) {
-          e.printStackTrace();
-        }
+	private UrbaZoneOCL uz;
+	
+	private void init(BasicPropertyUnit bPU) {
+		new OclInterpreterPlugin();
+		for (CadastralParcel cP : bPU.getCadastralParcel()) {
+			for (SubParcel sP : cP.getSubParcel()) {
+				sPList.add(sP);
+				IModelInstance iM = ImportModelInstanceBasicPropertyUnit
+						.generateModelInstance(EnvironnementOCL.getModel());
 
-        lRelevantObjects.addAll(lModelInstance.get(0)
-            .getAllModelInstanceObjects());
+				lModelInstance.add(iM);
+				try {
+					ImportModelInstanceBasicPropertyUnit.importCadastralSubParcel(iM, sP);
+					iM.addModelInstanceElement(bPU);
+					ImportModelInstanceBasicPropertyUnit.importCadastralParcel(iM, cP);
+				} catch (TypeNotFoundInModelException e) {
+					e.printStackTrace();
+				}
 
-        lModelInterpreter.add(new OCLInterpreterSimplu3D(iM));
-      }
-    }
-    int nbInt = sPList.size();
-    for (int i = 0; i < nbInt; i++) {
-      lFalseArray.add(new ArrayList<Integer>());
-      int sizeTemp = sPList.get(i).getUrbaZone().getRules().size();
-      for (int j = 0; j < sizeTemp; j++) {
-        lFalseArray.get(i).add(0);
-      }
-    }
-  }
+				lRelevantObjects.addAll(lModelInstance.get(0).getAllModelInstanceObjects());
 
-  public boolean interpret(IModelInstanceElement imiObject,
-      IOclInterpreter interpret, Constraint c) {
-    IInterpretationResult result = null;
-    try {
-      result = interpret.interpretConstraint(c, imiObject);
-    } catch (Exception e) {
-      e.printStackTrace();
-      System.exit(0);
-    }
-    if (result != null) {
-      if (result.getResult() instanceof OclBoolean) {
-        OclBoolean bool = (OclBoolean) result.getResult();
-        if (bool.oclIsInvalid().isTrue()) {
-          System.out.println("Règle invérifiable");
-          System.out.println("  " + result.getModelObject() + " ("
-              + result.getConstraint().getKind() + ": "
-              + result.getConstraint().getSpecification().getBody() + "): "
-              + result.getResult());
-        }
-        if (!bool.isTrue()) {
-          System.out.println("Règle non vérifiée");
-           System.out.println(imiObject);
+				lModelInterpreter.add(new OCLInterpreterSimplu3D(iM));
+			}
+		}
+		int nbInt = sPList.size();
+		for (int i = 0; i < nbInt; i++) {
+			lFalseArray.add(new ArrayList<Integer>());
+			int sizeTemp = uz.getRules().size();
+			for (int j = 0; j < sizeTemp; j++) {
+				lFalseArray.get(i).add(0);
+			}
+		}
+	}
 
-           System.out.println("  " + result.getModelObject() + " (" +
-           result.getConstraint().getKind() + ": " +
-           result.getConstraint().getSpecification().getBody() + "): " +
-           result.getResult());
+	public boolean interpret(IModelInstanceElement imiObject, IOclInterpreter interpret, Constraint c) {
+		IInterpretationResult result = null;
+		try {
+			result = interpret.interpretConstraint(c, imiObject);
+		} catch (Exception e) {
+			e.printStackTrace();
+			System.exit(0);
+		}
+		if (result != null) {
+			if (result.getResult() instanceof OclBoolean) {
+				OclBoolean bool = (OclBoolean) result.getResult();
+				if (bool.oclIsInvalid().isTrue()) {
+					System.out.println("Règle invérifiable");
+					System.out.println("  " + result.getModelObject() + " (" + result.getConstraint().getKind() + ": "
+							+ result.getConstraint().getSpecification().getBody() + "): " + result.getResult());
+				}
+				if (!bool.isTrue()) {
+					System.out.println("Règle non vérifiée");
+					System.out.println(imiObject);
 
-          return false;
-        }
+					System.out.println("  " + result.getModelObject() + " (" + result.getConstraint().getKind() + ": "
+							+ result.getConstraint().getSpecification().getBody() + "): " + result.getResult());
 
-        System.out.println("  " + result.getModelObject() + " ("
-            + result.getConstraint().getKind() + ": "
-            + result.getConstraint().getSpecification().getBody() + "): "
-            + result.getResult());
+					return false;
+				}
 
-      } else {
-        System.out.println("  " + result.getModelObject() + " ("
-            + result.getConstraint().getKind() + ": "
-            + result.getConstraint().getSpecification().getBody() + "): "
-            + result.getResult());
-      }
-    }
-    return true;
-  }
+				System.out.println("  " + result.getModelObject() + " (" + result.getConstraint().getKind() + ": "
+						+ result.getConstraint().getSpecification().getBody() + "): " + result.getResult());
 
-  public BasicPropertyUnit getbPU() {
-    return bPU;
-  }
+			} else {
+				System.out.println("  " + result.getModelObject() + " (" + result.getConstraint().getKind() + ": "
+						+ result.getConstraint().getSpecification().getBody() + "): " + result.getResult());
+			}
+		}
+		return true;
+	}
 
-  public List<IModelInstance> getlModeInstance() {
-    return lModelInstance;
-  }
+	public BasicPropertyUnit getbPU() {
+		return bPU;
+	}
 
-  public List<SubParcel> getsPList() {
-    return sPList;
-  }
+	public List<IModelInstance> getlModeInstance() {
+		return lModelInstance;
+	}
+
+	public List<SubParcel> getsPList() {
+		return sPList;
+	}
 
 }

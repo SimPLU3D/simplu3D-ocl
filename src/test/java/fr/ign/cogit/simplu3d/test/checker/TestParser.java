@@ -40,7 +40,7 @@ public class TestParser {
   public static void main(String[] args) throws IOException, ParseException {
 
     // Fichier contenant les contraintes OCL à appliquer
-    File oclConstraints = new File("src/main/resources/ocl/UB16.ocl");
+    File oclConstraints = new File("src/fr/ign/cogit/simplu3d/data/UB16.ocl");
 
     System.out.println("*******************************************");
     System.out.println("************Import modèle******************");
