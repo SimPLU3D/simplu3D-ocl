@@ -14,6 +14,8 @@ import fr.ign.cogit.geoxygene.spatial.coordgeom.DirectPosition;
 import fr.ign.cogit.geoxygene.spatial.geomprim.GM_Point;
 import fr.ign.cogit.geoxygene.util.attribute.AttributeManager;
 import fr.ign.cogit.geoxygene.util.conversion.ShapefileWriter;
+import fr.ign.cogit.simplu3d.application.model.EnvironnementOCL;
+import fr.ign.cogit.simplu3d.importer.ocl.LoaderSHPOCL;
 import fr.ign.cogit.simplu3d.io.load.application.LoaderSHP;
 import fr.ign.cogit.simplu3d.model.application.BasicPropertyUnit;
 import fr.ign.cogit.simplu3d.model.application.Environnement;
@@ -79,11 +81,11 @@ public class DistributionGeneration {
     Parameters p = Parameters
         .unmarshall(new File(
             "./src/main/resources/scenario/building_parameters_project_expthese_1.xml"));
-    Environnement env = LoaderSHP.load(p.getString("folder"));
+    EnvironnementOCL env = LoaderSHPOCL.load(p.getString("folder"));
     BasicPropertyUnit bpu = env.getBpU().get(1);
 
     ModelInstanceGraphConfigurationPredicate<Cuboid> pred = new ModelInstanceGraphConfigurationPredicate<Cuboid>(
-        bpu);
+        bpu,env.getUrbaZoneOCL().get(0));
     ModelInstanceGraphConfiguration<Cuboid> config = new ModelInstanceGraphConfiguration<>(
         bpu, pred.getRuleChecker().getlModeInstance().get(0),
         new ConstantEnergy<Cuboid, Cuboid>(0),

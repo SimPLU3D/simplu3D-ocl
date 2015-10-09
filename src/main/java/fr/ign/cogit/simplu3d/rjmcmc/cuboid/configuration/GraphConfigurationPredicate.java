@@ -2,6 +2,7 @@ package fr.ign.cogit.simplu3d.rjmcmc.cuboid.configuration;
 
 import org.apache.log4j.Logger;
 
+import fr.ign.cogit.simplu3d.application.model.UrbaZoneOCL;
 import fr.ign.cogit.simplu3d.checker.VeryFastRuleChecker;
 import fr.ign.cogit.simplu3d.model.application.BasicPropertyUnit;
 import fr.ign.cogit.simplu3d.rjmcmc.cuboid.geometry.impl.AbstractSimpleBuilding;
@@ -43,8 +44,8 @@ public class GraphConfigurationPredicate<O extends AbstractSimpleBuilding>
 		return vFR;
 	}
 
-	public GraphConfigurationPredicate(BasicPropertyUnit bPU) {
-		this.vFR = new VeryFastRuleChecker(bPU);
+	public GraphConfigurationPredicate(BasicPropertyUnit bPU, UrbaZoneOCL uz) {
+		this.vFR = new VeryFastRuleChecker(bPU, uz);
 	}
 
 	@Override

@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.apache.log4j.Logger;
 
+import fr.ign.cogit.simplu3d.application.model.UrbaZoneOCL;
 import fr.ign.cogit.simplu3d.checker.VeryFastRuleChecker;
 import fr.ign.cogit.simplu3d.model.application.BasicPropertyUnit;
 import fr.ign.cogit.simplu3d.rjmcmc.cuboid.geometry.impl.AbstractSimpleBuilding;
@@ -46,8 +47,8 @@ public class ModelInstanceGraphConfigurationModificationPredicate<O extends Abst
     return vFR;
   }
 
-  public ModelInstanceGraphConfigurationModificationPredicate(BasicPropertyUnit bPU) {
-    this.vFR = new VeryFastRuleChecker(bPU);
+  public ModelInstanceGraphConfigurationModificationPredicate(BasicPropertyUnit bPU, UrbaZoneOCL uz) {
+    this.vFR = new VeryFastRuleChecker(bPU,uz);
   }
 
   @Override
