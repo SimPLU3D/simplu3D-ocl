@@ -4,13 +4,11 @@ import java.util.List;
 
 import org.apache.log4j.Logger;
 
-import tudresden.ocl20.pivot.modelinstancetype.types.IModelInstanceObject;
 import fr.ign.cogit.simplu3d.checker.VeryFastRuleChecker;
 import fr.ign.cogit.simplu3d.model.application.BasicPropertyUnit;
 import fr.ign.cogit.simplu3d.rjmcmc.cuboid.geometry.impl.AbstractSimpleBuilding;
-import fr.ign.mpp.configuration.BirthDeathModification;
-import fr.ign.mpp.configuration.GraphConfiguration;
 import fr.ign.rjmcmc.configuration.ConfigurationModificationPredicate;
+import tudresden.ocl20.pivot.modelinstancetype.types.IModelInstanceObject;
 
 /**
  * 

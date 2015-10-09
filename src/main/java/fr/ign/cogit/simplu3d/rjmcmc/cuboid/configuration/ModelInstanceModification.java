@@ -1,7 +1,5 @@
 package fr.ign.cogit.simplu3d.rjmcmc.cuboid.configuration;
 
-import java.util.ArrayList;
-
 import fr.ign.cogit.simplu3d.rjmcmc.cuboid.geometry.impl.AbstractSimpleBuilding;
 import fr.ign.mpp.configuration.AbstractBirthDeathModification;
 /**

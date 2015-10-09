@@ -5,7 +5,6 @@ import org.apache.log4j.Logger;
 import fr.ign.cogit.simplu3d.checker.VeryFastRuleChecker;
 import fr.ign.cogit.simplu3d.model.application.BasicPropertyUnit;
 import fr.ign.cogit.simplu3d.rjmcmc.cuboid.geometry.impl.AbstractSimpleBuilding;
-import fr.ign.rjmcmc.configuration.Configuration;
 import fr.ign.rjmcmc.configuration.ConfigurationPredicate;
 
 /**

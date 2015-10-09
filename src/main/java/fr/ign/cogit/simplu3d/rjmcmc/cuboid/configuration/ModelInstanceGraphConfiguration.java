@@ -5,10 +5,6 @@ import java.util.List;
 
 import org.apache.log4j.Logger;
 
-import tudresden.ocl20.pivot.modelinstance.IModelInstance;
-import tudresden.ocl20.pivot.modelinstancetype.exception.TypeNotFoundInModelException;
-import tudresden.ocl20.pivot.modelinstancetype.types.IModelInstanceElement;
-import tudresden.ocl20.pivot.modelinstancetype.types.IModelInstanceObject;
 import fr.ign.cogit.simplu3d.model.application.AbstractBuilding;
 import fr.ign.cogit.simplu3d.model.application.BasicPropertyUnit;
 import fr.ign.cogit.simplu3d.model.application.Building;
@@ -19,6 +15,10 @@ import fr.ign.cogit.simplu3d.rjmcmc.cuboid.geometry.impl.AbstractSimpleBuilding;
 import fr.ign.mpp.configuration.AbstractGraphConfiguration;
 import fr.ign.rjmcmc.energy.BinaryEnergy;
 import fr.ign.rjmcmc.energy.UnaryEnergy;
+import tudresden.ocl20.pivot.modelinstance.IModelInstance;
+import tudresden.ocl20.pivot.modelinstancetype.exception.TypeNotFoundInModelException;
+import tudresden.ocl20.pivot.modelinstancetype.types.IModelInstanceElement;
+import tudresden.ocl20.pivot.modelinstancetype.types.IModelInstanceObject;
 
 /**
  * 
