@@ -352,7 +352,8 @@ public class OCLBuildingsCuboidFinalDirectRejection {
 				"ChgHeight"));
 
 		Sampler<ModelInstanceGraphConfiguration<Cuboid>, ModelInstanceModification<Cuboid>> s = new GreenSamplerBlockTemperature<>(
-				ds, new MetropolisAcceptance<SimpleTemperature>(), kernels);
+				rng, ds, new MetropolisAcceptance<SimpleTemperature>(), kernels);
+
 		return s;
 	}
 
