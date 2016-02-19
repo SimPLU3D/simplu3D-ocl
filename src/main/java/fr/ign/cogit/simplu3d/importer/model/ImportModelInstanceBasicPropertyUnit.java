@@ -64,8 +64,8 @@ public class ImportModelInstanceBasicPropertyUnit {
       modelInstance.addModelInstanceElement(sW);
       modelInstance.addModelInstanceElement(sW.getGeom());
     }
-    modelInstance.addModelInstanceElement(b.getToit());
-    modelInstance.addModelInstanceElement(b.getToit().getGeom());
+    modelInstance.addModelInstanceElement(b.getRoof());
+    modelInstance.addModelInstanceElement(b.getRoof().getGeom());
   }
 
   public static IModelInstanceObject importCadastralSubParcel(IModelInstance modelInstance,
