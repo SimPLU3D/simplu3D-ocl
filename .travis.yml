@@ -5,8 +5,11 @@ jdk:
 
 install: true
 
+
+
 env:
  - maven.wagon.http.ssl.insecure=true maven.wagon.http.ssl.allowall=true maven.wagon.http.ssl.ignore.validity.dates=true
 
-script: 
+script:
+- export MAVEN_OPTS="-Djava.library.path=lib/native_libraries/linux-amd64"
 - mvn -q clean install -Dmaven.wagon.http.ssl.insecure=true -Dmaven.wagon.http.ssl.allowall=true
