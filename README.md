@@ -1,6 +1,6 @@
 # Simplu3D-ocl
 
-[![Build Status](https://travis-ci.org/IGNF/simplu3D-rules.svg?branch=master)](https://travis-ci.org/IGNF/simplu3D-ocl)
+[![Build Status](https://travis-ci.org/IGNF/simplu3D-ocl.svg?branch=master)](https://travis-ci.org/IGNF/simplu3D-ocl)
 
 Introduction
 ---------------------
