@@ -118,11 +118,10 @@ endif
 context SubParcel inv:
 self.getBuildingsParts().height(2, 0)->forAll(h|h<28)
 
--- For "bureau" and "Habitation" buildings, the maximal height is limited by 8 m above gutter.
+-- For "bureau" and "habitation" buildings, the maximal height is limited by 8 m above gutter.
 
 context BuildingPart inv:
-Sequence{'Bureau' , 'Habitation'}->includes(self.destination) implies self.height(2,
-0) + 8 <= self.height(2,1)
+Sequence{'Bureau' , 'Habitation'}->includes(self.destination) implies self.height(2,0) + 8 <= self.height(2,1)
 
 
 
