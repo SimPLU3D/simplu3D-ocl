@@ -7,12 +7,18 @@ This research library is developed as part of [COGIT laboratory](http://recherch
 
 
 
-Documentation
+Documentation and publications
 ---------------------
 
 For more information about this code, the following article describes the regulation model and the use of OCL to represent urban regulation :
 
 [Brasebin, M.; Perret, J.; Mustière, S.; Weber, C. A Generic Model to Exploit Urban Regulation Knowledge. ISPRS Int. J. Geo-Inf. 2016, 5, 14.](http://www.mdpi.com/2220-9964/5/2/14/htm)
+
+or in the PhD of Mickael Brasebin (French document) :
+
+[Brasebin, M. (2014) Les données géographiques 3D pour simuler l'impact de la réglementation urbaine sur la morphologie du bâti, Thèse de doctorat, spécialité Sciences et Technologies de l'Information Géographique, Université Paris-Est, apr 2014](http://recherche.ign.fr/labos/cogit/publiCOGITDetail.php?idpubli=5016)
+
+
 
 Library installation
 ---------------------
