@@ -5,10 +5,14 @@ jdk:
 
 install: true
 
+before_install:
+- sudo cp /usr/share/java/j3d*.jar /usr/lib/jvm/java-7-openjdk/jre/lib/ext/
+- sudo cp /usr/lib/jni/libj3dcore-ogl.so /usr/lib/jvm/java-7-openjdk/jre/lib/i386/
+- sudo cp /usr/share/java/vecmath-*.jar /usr/lib/jvm/java-7-openjdk/jre/lib/ext/
 
 
 env: JAVA_OPTS="-Djava.library.path=lib/native_libraries/linux-amd64"
 
 script:
 - export MAVEN_OPTS="-Djava.library.path=lib/native_libraries/linux-amd64"
-- mvn -q clean install  -Dmaven.test.skip=true -Dmaven.wagon.http.ssl.insecure=true -Dmaven.wagon.http.ssl.allowall=true
+- mvn -q clean install  -Dmaven.test.skip=false -Dmaven.wagon.http.ssl.insecure=true -Dmaven.wagon.http.ssl.allowall=true
