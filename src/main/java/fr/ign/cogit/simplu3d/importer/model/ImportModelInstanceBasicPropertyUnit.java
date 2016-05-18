@@ -60,7 +60,7 @@ public class ImportModelInstanceBasicPropertyUnit {
     modelInstance.addModelInstanceElement(b);
     modelInstance.addModelInstanceElement(b.getFootprint());
     modelInstance.addModelInstanceElement(b.getGeom());
-    for (SpecificWallSurface sW : b.getFacade()) {
+    for (SpecificWallSurface sW : b.getWallSurfaces()) {
       modelInstance.addModelInstanceElement(sW);
       modelInstance.addModelInstanceElement(sW.getGeom());
     }
