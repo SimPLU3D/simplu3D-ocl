@@ -4,9 +4,9 @@ import java.util.List;
 
 import org.apache.log4j.Logger;
 
-import fr.ign.cogit.simplu3d.application.model.UrbaZoneOCL;
 import fr.ign.cogit.simplu3d.checker.VeryFastRuleChecker;
-import fr.ign.cogit.simplu3d.model.application.BasicPropertyUnit;
+import fr.ign.cogit.simplu3d.model.BasicPropertyUnit;
+import fr.ign.cogit.simplu3d.model.UrbaZoneOCL;
 import fr.ign.cogit.simplu3d.rjmcmc.cuboid.geometry.impl.AbstractSimpleBuilding;
 import fr.ign.rjmcmc.configuration.ConfigurationModificationPredicate;
 import tudresden.ocl20.pivot.modelinstancetype.types.IModelInstanceObject;

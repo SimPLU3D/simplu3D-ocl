@@ -8,8 +8,8 @@ import fr.ign.cogit.geoxygene.api.feature.IFeatureCollection;
 import fr.ign.cogit.geoxygene.sig3d.semantic.DTMArea;
 import fr.ign.cogit.geoxygene.sig3d.util.ColorShade;
 import fr.ign.cogit.geoxygene.util.conversion.ShapefileReader;
-import fr.ign.cogit.simplu3d.application.model.EnvironnementOCL;
-import fr.ign.cogit.simplu3d.io.load.application.LoaderSHP;
+import fr.ign.cogit.simplu3d.io.nonStructDatabase.shp.LoaderSHP;
+import fr.ign.cogit.simplu3d.model.EnvironnementOCL;
 
 
 /**

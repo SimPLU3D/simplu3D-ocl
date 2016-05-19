@@ -1,4 +1,4 @@
-package fr.ign.cogit.simplu3d.application.model;
+package fr.ign.cogit.simplu3d.model;
 
 import java.net.URL;
 
@@ -6,7 +6,7 @@ import fr.ign.cogit.geoxygene.api.feature.IFeatureCollection;
 import fr.ign.cogit.geoxygene.feature.FT_FeatureCollection;
 import fr.ign.cogit.simplu3d.importer.model.ImportModelInstanceEnvironnement;
 import fr.ign.cogit.simplu3d.importer.model.ModelProviderClass;
-import fr.ign.cogit.simplu3d.model.application.Environnement;
+import fr.ign.cogit.simplu3d.model.Environnement;
 import tudresden.ocl20.pivot.model.IModel;
 
 public class EnvironnementOCL extends Environnement {

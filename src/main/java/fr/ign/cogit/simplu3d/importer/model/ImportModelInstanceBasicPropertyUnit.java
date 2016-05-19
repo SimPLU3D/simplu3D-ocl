@@ -10,12 +10,12 @@ import tudresden.ocl20.pivot.modelinstancetype.java.internal.modelinstance.JavaM
 import tudresden.ocl20.pivot.modelinstancetype.types.IModelInstanceObject;
 import tudresden.ocl20.pivot.standalone.facade.StandaloneFacade;
 import fr.ign.cogit.geoxygene.api.feature.IFeature;
-import fr.ign.cogit.simplu3d.model.application.AbstractBuilding;
-import fr.ign.cogit.simplu3d.model.application.CadastralParcel;
-import fr.ign.cogit.simplu3d.model.application.Road;
-import fr.ign.cogit.simplu3d.model.application.SpecificCadastralBoundary;
-import fr.ign.cogit.simplu3d.model.application.SpecificWallSurface;
-import fr.ign.cogit.simplu3d.model.application.SubParcel;
+import fr.ign.cogit.simplu3d.model.AbstractBuilding;
+import fr.ign.cogit.simplu3d.model.CadastralParcel;
+import fr.ign.cogit.simplu3d.model.Road;
+import fr.ign.cogit.simplu3d.model.SpecificCadastralBoundary;
+import fr.ign.cogit.simplu3d.model.SpecificWallSurface;
+import fr.ign.cogit.simplu3d.model.SubParcel;
 /**
  * 
  *        This software is released under the licence CeCILL

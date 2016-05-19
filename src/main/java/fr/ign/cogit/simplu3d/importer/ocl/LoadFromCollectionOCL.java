@@ -3,12 +3,12 @@ package fr.ign.cogit.simplu3d.importer.ocl;
 import fr.ign.cogit.geoxygene.api.feature.IFeature;
 import fr.ign.cogit.geoxygene.api.feature.IFeatureCollection;
 import fr.ign.cogit.geoxygene.sig3d.semantic.AbstractDTM;
-import fr.ign.cogit.simplu3d.application.model.EnvironnementOCL;
-import fr.ign.cogit.simplu3d.application.model.Rule;
-import fr.ign.cogit.simplu3d.application.model.UrbaZoneOCL;
 import fr.ign.cogit.simplu3d.importer.RulesImporter;
-import fr.ign.cogit.simplu3d.io.load.application.LoadFromCollection;
-import fr.ign.cogit.simplu3d.model.application.UrbaZone;
+import fr.ign.cogit.simplu3d.io.LoadFromCollection;
+import fr.ign.cogit.simplu3d.model.EnvironnementOCL;
+import fr.ign.cogit.simplu3d.model.Rule;
+import fr.ign.cogit.simplu3d.model.UrbaZone;
+import fr.ign.cogit.simplu3d.model.UrbaZoneOCL;
 
 /**
  * 
