@@ -5,10 +5,6 @@ jdk:
 
 install: true
 
-before_install:
-- sudo apt-get install libjava3d-java
-
-
 env: JAVA_OPTS="-Djava.library.path=lib/native_libraries/linux-amd64"
 
 script:
