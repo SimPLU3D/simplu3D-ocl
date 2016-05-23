@@ -20,10 +20,6 @@ import fr.ign.cogit.simplu3d.model.EnvironnementOCL;
 import fr.ign.cogit.simplu3d.rjmcmc.cuboid.configuration.ModelInstanceGraphConfiguration;
 import fr.ign.cogit.simplu3d.rjmcmc.cuboid.configuration.ModelInstanceGraphConfigurationPredicate;
 import fr.ign.cogit.simplu3d.rjmcmc.cuboid.configuration.ModelInstanceModification;
-import fr.ign.cogit.simplu3d.rjmcmc.cuboid.endTest.StabilityEndTest;
-import fr.ign.cogit.simplu3d.rjmcmc.cuboid.energy.cuboid2.DifferenceVolumeUnaryEnergy;
-import fr.ign.cogit.simplu3d.rjmcmc.cuboid.energy.cuboid2.IntersectionVolumeBinaryEnergy;
-import fr.ign.cogit.simplu3d.rjmcmc.cuboid.energy.cuboid2.VolumeUnaryEnergy;
 import fr.ign.cogit.simplu3d.rjmcmc.cuboid.geometry.impl.Cuboid;
 import fr.ign.cogit.simplu3d.rjmcmc.cuboid.geometry.loader.LoaderCuboid2;
 import fr.ign.cogit.simplu3d.rjmcmc.cuboid.transformation.ChangeHeight;
@@ -32,13 +28,17 @@ import fr.ign.cogit.simplu3d.rjmcmc.cuboid.transformation.ChangeWidth;
 import fr.ign.cogit.simplu3d.rjmcmc.cuboid.transformation.MoveCuboid;
 import fr.ign.cogit.simplu3d.rjmcmc.cuboid.transformation.RotateCuboid;
 import fr.ign.cogit.simplu3d.rjmcmc.cuboid.transformation.birth.TransformToSurface;
-import fr.ign.cogit.simplu3d.rjmcmc.cuboid.visitor.CSVendStats;
-import fr.ign.cogit.simplu3d.rjmcmc.cuboid.visitor.CSVvisitor;
-import fr.ign.cogit.simplu3d.rjmcmc.cuboid.visitor.CountVisitor;
-import fr.ign.cogit.simplu3d.rjmcmc.cuboid.visitor.FilmVisitor;
-import fr.ign.cogit.simplu3d.rjmcmc.cuboid.visitor.ShapefileVisitorCuboid;
-import fr.ign.cogit.simplu3d.rjmcmc.cuboid.visitor.StatsVisitor;
-import fr.ign.cogit.simplu3d.rjmcmc.cuboid.visitor.ViewerVisitor;
+import fr.ign.cogit.simplu3d.rjmcmc.generic.endTest.StabilityEndTest;
+import fr.ign.cogit.simplu3d.rjmcmc.generic.energy.DifferenceVolumeUnaryEnergy;
+import fr.ign.cogit.simplu3d.rjmcmc.generic.energy.IntersectionVolumeBinaryEnergy;
+import fr.ign.cogit.simplu3d.rjmcmc.generic.energy.VolumeUnaryEnergy;
+import fr.ign.cogit.simplu3d.rjmcmc.generic.visitor.CSVendStats;
+import fr.ign.cogit.simplu3d.rjmcmc.generic.visitor.CSVvisitor;
+import fr.ign.cogit.simplu3d.rjmcmc.generic.visitor.CountVisitor;
+import fr.ign.cogit.simplu3d.rjmcmc.generic.visitor.FilmVisitor;
+import fr.ign.cogit.simplu3d.rjmcmc.generic.visitor.ShapefileVisitor;
+import fr.ign.cogit.simplu3d.rjmcmc.generic.visitor.StatsVisitor;
+import fr.ign.cogit.simplu3d.rjmcmc.generic.visitor.ViewerVisitor;
 import fr.ign.mpp.DirectSampler;
 import fr.ign.mpp.kernel.KernelFactory;
 import fr.ign.mpp.kernel.ObjectBuilder;
@@ -156,7 +156,7 @@ public class OCLBuildingsCuboidFinal {
 			list.add(visitor);
 		}
 		if (p.getBoolean("shapefilewriter")) {
-			ShapefileVisitorCuboid<Cuboid, ModelInstanceGraphConfiguration<Cuboid>, ModelInstanceModification<Cuboid>> shpVisitor = new ShapefileVisitorCuboid<>(
+			ShapefileVisitor<Cuboid, ModelInstanceGraphConfiguration<Cuboid>, ModelInstanceModification<Cuboid>> shpVisitor = new ShapefileVisitor<>(
 					p.get("result").toString() + "result");
 			list.add(shpVisitor);
 		}
