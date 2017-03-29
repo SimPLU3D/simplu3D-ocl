@@ -138,8 +138,8 @@ public class CacheModelInstance<O extends AbstractBuilding> {
       bPU.getBuildings().add((Building) aB);
       aB.setbPU(bPU);
     }
-    for (CadastralParcel cP : bPU.getCadastralParcel()) {
-      for (SubParcel cB : cP.getSubParcel()) {
+    for (CadastralParcel cP : bPU.getCadastralParcels()) {
+      for (SubParcel cB : cP.getSubParcels()) {
         cB.getBuildingsParts().add(aB);
       }
     }
@@ -150,8 +150,8 @@ public class CacheModelInstance<O extends AbstractBuilding> {
       bPU.getBuildings().remove((Building) aB);
       aB.setbPU(null);
     }
-    for (CadastralParcel cP : bPU.getCadastralParcel()) {
-      for (SubParcel cB : cP.getSubParcel()) {
+    for (CadastralParcel cP : bPU.getCadastralParcels()) {
+      for (SubParcel cB : cP.getSubParcels()) {
         cB.getBuildingsParts().remove(aB);
       }
     }

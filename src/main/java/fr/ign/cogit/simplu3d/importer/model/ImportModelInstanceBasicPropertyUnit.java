@@ -12,10 +12,10 @@ import tudresden.ocl20.pivot.standalone.facade.StandaloneFacade;
 import fr.ign.cogit.geoxygene.api.feature.IFeature;
 import fr.ign.cogit.simplu3d.model.AbstractBuilding;
 import fr.ign.cogit.simplu3d.model.CadastralParcel;
+import fr.ign.cogit.simplu3d.model.ParcelBoundary;
 import fr.ign.cogit.simplu3d.model.Road;
-import fr.ign.cogit.simplu3d.model.SpecificCadastralBoundary;
-import fr.ign.cogit.simplu3d.model.SpecificWallSurface;
 import fr.ign.cogit.simplu3d.model.SubParcel;
+import fr.ign.cogit.simplu3d.model.WallSurface;
 /**
  * 
  *        This software is released under the licence CeCILL
@@ -60,7 +60,7 @@ public class ImportModelInstanceBasicPropertyUnit {
     modelInstance.addModelInstanceElement(b);
     modelInstance.addModelInstanceElement(b.getFootprint());
     modelInstance.addModelInstanceElement(b.getGeom());
-    for (SpecificWallSurface sW : b.getWallSurfaces()) {
+    for (WallSurface sW : b.getWallSurfaces()) {
       modelInstance.addModelInstanceElement(sW);
       modelInstance.addModelInstanceElement(sW.getGeom());
     }
@@ -72,7 +72,7 @@ public class ImportModelInstanceBasicPropertyUnit {
       SubParcel sP) throws TypeNotFoundInModelException {
     IModelInstanceObject iMS = (IModelInstanceObject) modelInstance.addModelInstanceElement(sP);
     modelInstance.addModelInstanceElement(sP.getGeom());
-    for (SpecificCadastralBoundary cCB : sP.sCBoundary) {
+    for (ParcelBoundary cCB : sP.getBoundaries()) {
       modelInstance.addModelInstanceElement(cCB);
       modelInstance.addModelInstanceElement(cCB.getGeom());
     }
@@ -87,7 +87,7 @@ public class ImportModelInstanceBasicPropertyUnit {
     modelInstance.addModelInstanceElement(cP);
     modelInstance.addModelInstanceElement(cP.getGeom());
     modelInstance.addModelInstanceElement(cP.getConsLine());
-    for (SpecificCadastralBoundary sCB : cP.getSpecificCadastralBoundary()) {
+    for (ParcelBoundary sCB : cP.getBoundaries()) {
       modelInstance.addModelInstanceElement(sCB);
       modelInstance.addModelInstanceElement(sCB.getGeom());
       IFeature feat = sCB.getFeatAdj();

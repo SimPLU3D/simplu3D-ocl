@@ -156,8 +156,8 @@ public class PoolModelInstance {
       aB.setbPU(bPU);
     }
 
-    for (CadastralParcel cP : bPU.getCadastralParcel()) {
-      for (SubParcel cB : cP.getSubParcel()) {
+    for (CadastralParcel cP : bPU.getCadastralParcels()) {
+      for (SubParcel cB : cP.getSubParcels()) {
 
         cB.getBuildingsParts().add(aB);
 
@@ -173,8 +173,8 @@ public class PoolModelInstance {
       aB.setbPU(null);
     }
 
-    for (CadastralParcel cP : bPU.getCadastralParcel()) {
-      for (SubParcel cB : cP.getSubParcel()) {
+    for (CadastralParcel cP : bPU.getCadastralParcels()) {
+      for (SubParcel cB : cP.getSubParcels()) {
 
         cB.getBuildingsParts().remove(aB);
 

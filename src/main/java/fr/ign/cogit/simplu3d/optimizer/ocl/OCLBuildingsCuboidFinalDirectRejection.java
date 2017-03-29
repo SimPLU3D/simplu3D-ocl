@@ -21,7 +21,7 @@ import fr.ign.cogit.simplu3d.rjmcmc.cuboid.configuration.ModelInstanceGraphConfi
 import fr.ign.cogit.simplu3d.rjmcmc.cuboid.configuration.ModelInstanceGraphConfigurationModificationPredicate;
 import fr.ign.cogit.simplu3d.rjmcmc.cuboid.configuration.ModelInstanceModification;
 import fr.ign.cogit.simplu3d.rjmcmc.cuboid.geometry.impl.Cuboid;
-import fr.ign.cogit.simplu3d.rjmcmc.cuboid.geometry.loader.LoaderCuboid2;
+import fr.ign.cogit.simplu3d.rjmcmc.cuboid.geometry.loader.LoaderCuboid;
 import fr.ign.cogit.simplu3d.rjmcmc.cuboid.transformation.ChangeHeight;
 import fr.ign.cogit.simplu3d.rjmcmc.cuboid.transformation.ChangeLength;
 import fr.ign.cogit.simplu3d.rjmcmc.cuboid.transformation.ChangeWidth;
@@ -129,7 +129,7 @@ public class OCLBuildingsCuboidFinalDirectRejection {
 		int loadExistingConfig = p.getInteger("load_existing_config");
 		if (loadExistingConfig == 1) {
 			String configPath = p.get("config_shape_file").toString();
-			List<Cuboid> lCuboid = LoaderCuboid2.loadFromShapeFile(configPath);
+			List<Cuboid> lCuboid = LoaderCuboid.loadFromShapeFile(configPath);
 			ModelInstanceModification<Cuboid> m = conf.newModification();
 			for (Cuboid c : lCuboid) {
 				m.insertBirth(c);
@@ -164,8 +164,8 @@ public class OCLBuildingsCuboidFinalDirectRejection {
 			list.add(shpVisitor);
 		}
 		if (p.getBoolean("visitorviewer")) {
-			Visitor<ModelInstanceGraphConfiguration<Cuboid>, ModelInstanceModification<Cuboid>> visitorViewer = new ViewerVisitor<Cuboid, ModelInstanceGraphConfiguration<Cuboid>, ModelInstanceModification<Cuboid>>(
-					"" + id, p);
+			Visitor<ModelInstanceGraphConfiguration<Cuboid>, ModelInstanceModification<Cuboid>> visitorViewer = new ViewerVisitor<Cuboid, ModelInstanceGraphConfiguration<Cuboid>, ModelInstanceModification<Cuboid>>(env, 
+					"" + id, p );
 			list.add(visitorViewer);
 		}
 
@@ -183,7 +183,7 @@ public class OCLBuildingsCuboidFinalDirectRejection {
 			Color c = new Color(p.getInteger("filmvisitorr"), p.getInteger("filmvisitorg"),
 					p.getInteger("filmvisitorb"));
 			FilmVisitor<Cuboid, ModelInstanceGraphConfiguration<Cuboid>, ModelInstanceModification<Cuboid>> visitorViewerFilmVisitor = new FilmVisitor<>(
-					dpCentre, viewTo, p.getString("result"), c, p);
+					dpCentre, viewTo, p.getString("result"), c, p, env);
 			list.add(visitorViewerFilmVisitor);
 		}
 

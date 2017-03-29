@@ -8,7 +8,8 @@ import fr.ign.cogit.simplu3d.model.UrbaZone;
 public class UrbaZoneOCL extends UrbaZone {
 
 	public UrbaZoneOCL(UrbaZone u) {
-		super(u.getGeom());
+		super();
+		this.setGeom(u.getGeom());
 		this.setSubParcels(u.getSubParcels());
 
 	}

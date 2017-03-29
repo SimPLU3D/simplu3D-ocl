@@ -109,8 +109,8 @@ public class VeryFastRuleChecker {
 
   private void init(BasicPropertyUnit bPU) {
     new OclInterpreterPlugin();
-    for (CadastralParcel cP : bPU.getCadastralParcel()) {
-      for (SubParcel sP : cP.getSubParcel()) {
+    for (CadastralParcel cP : bPU.getCadastralParcels()) {
+      for (SubParcel sP : cP.getSubParcels()) {
         sPList.add(sP);
         IModelInstance iM = ImportModelInstanceBasicPropertyUnit
             .generateModelInstance(EnvironnementOCL.getModel());

@@ -3,7 +3,7 @@
   <modelVersion>4.0.0</modelVersion>
   <groupId>fr.ign.cogit</groupId>
   <artifactId>simplu3d-ocl</artifactId>
-  <version>1.0</version>
+  <version>1.2-SNAPSHOT</version>
   <packaging>jar</packaging>
   <name>simplu3d-ocl</name>
 
@@ -56,10 +56,10 @@
 	<artifactId>maven-compiler-plugin</artifactId>
 	<version>2.4</version>
 	<configuration>
-	  <compilerVersion>1.7</compilerVersion>
-	  <source>1.7</source>
-	  <complianceLevel>1.7</complianceLevel>
-	  <target>1.7</target>
+	  <compilerVersion>1.8</compilerVersion>
+	  <source>1.8</source>
+	  <complianceLevel>1.8</complianceLevel>
+	  <target>1.8</target>
 	  <includes>
 	    <include>**/*</include>
 	  </includes>
@@ -286,14 +286,6 @@
       </snapshots>
     </repository>
     <repository>
-      <id>iscpif-ign-releases</id>
-      <name>ISCPIF Release repository for IGN</name>
-      <url>http://maven.iscpif.fr/ign-releases/</url>
-      <snapshots>
-        <enabled>false</enabled>
-      </snapshots>
-    </repository>
-    <repository>
       <id>osgeo-geotools</id>
       <url>http://download.osgeo.org/webdav/geotools/</url>
       <snapshots>
@@ -301,6 +293,8 @@
       </snapshots>
     </repository>
   </repositories>
+
+
 
   <dependencies>
     <dependency>
@@ -577,17 +571,17 @@
     <dependency>
       <groupId>fr.ign.cogit</groupId>
       <artifactId>geoxygene-sig3d</artifactId>
-      <version>1.8-SNAPSHOT</version>
+      <version>1.9-SNAPSHOT</version>
     </dependency>
         <dependency>
 			<groupId>fr.ign.cogit</groupId>
 			<artifactId>simplu3d</artifactId>
-			<version>1.0-SNAPSHOT</version>
+			<version>1.2-SNAPSHOT</version>
 		</dependency>
     <dependency>
 			<groupId>fr.ign.cogit</groupId>
 			<artifactId>simplu3d-rules</artifactId>
-			<version>1.0-SNAPSHOT</version>
+			<version>1.2-SNAPSHOT</version>
 		</dependency>
   </dependencies>
 	<distributionManagement>
