@@ -16,7 +16,7 @@ public class TestOCLConstraint {
 	@Test
 	public void testInterpretation() throws Exception {
 
-		EnvironnementOCL env = LoaderSHPOCL.load("src/test/resources/fr/ign/cogit/simplu3d/data/");
+		EnvironnementOCL env = LoaderSHPOCL.loadNoDTM("src/test/resources/fr/ign/cogit/simplu3d/data/");
 
 		for (BasicPropertyUnit bPU : env.getBpU()) {
 			ExhaustiveChecker vFR = new ExhaustiveChecker(bPU, env.getUrbaZoneOCL().get(0));

@@ -7,6 +7,7 @@ import java.util.List;
 import org.eclipse.emf.common.util.AbstractTreeIterator;
 import org.eclipse.emf.common.util.TreeIterator;
 import org.eclipse.emf.ecore.EObject;
+import org.junit.Test;
 
 import tudresden.ocl20.pivot.essentialocl.expressions.impl.ExpressionInOclImpl;
 import tudresden.ocl20.pivot.essentialocl.expressions.impl.IntegerLiteralExpImpl;
@@ -31,16 +32,23 @@ import fr.ign.cogit.simplu3d.importer.model.ImportModelInstanceEnvironnement;
  *
  */
 public class TestParser {
+	
+	
+	public static void main(String[] args) throws IOException, ParseException{
+		TestParser tp = new TestParser();
+		tp.test();
+	}
 
   /**
    * @param args
    * @throws ParseException
    * @throws IOException
    */
-  public static void main(String[] args) throws IOException, ParseException {
+	@Test
+  public void test() throws IOException, ParseException {
 
     // Fichier contenant les contraintes OCL à appliquer
-    File oclConstraints = new File("src/fr/ign/cogit/simplu3d/data/UB16.ocl");
+    File oclConstraints = new File("src/main/resources/fr/ign/cogit/simplu3d/data/UB16.ocl");
 
     System.out.println("*******************************************");
     System.out.println("************Import modèle******************");
