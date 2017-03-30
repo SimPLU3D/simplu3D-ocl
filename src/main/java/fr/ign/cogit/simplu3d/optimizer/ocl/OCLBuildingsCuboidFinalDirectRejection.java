@@ -281,8 +281,10 @@ public class OCLBuildingsCuboidFinalDirectRejection {
 			RandomGenerator rng, Parameters p, BasicPropertyUnit bpU,
 			ModelInstanceGraphConfigurationModificationPredicate<Cuboid> pred) {
 		// Un vecteur ?????
-		double mindim = p.getDouble("mindim");
-		double maxdim = p.getDouble("maxdim");
+		double minwid = p.getDouble("minwid");
+		double maxwid = p.getDouble("maxwid");
+		double minlen = p.getDouble("minlen");
+		double maxlen = p.getDouble("maxlen");
 		double minheight = p.getDouble("minheight");
 		double maxheight = p.getDouble("maxheight");
 		// A priori on redéfini le constructeur de l'objet
@@ -320,8 +322,8 @@ public class OCLBuildingsCuboidFinalDirectRejection {
 		// env.maxY(), maxdim,
 		// maxdim, maxheight, Math.PI), builder, bpU.getpol2D());
 		UniformBirth<Cuboid> birth = new UniformBirth<Cuboid>(rng,
-				new Cuboid(env.minX(), env.minY(), mindim, mindim, minheight, 0),
-				new Cuboid(env.maxX(), env.maxY(), maxdim, maxdim, maxheight, Math.PI), builder,
+				new Cuboid(env.minX(), env.minY(), minlen, minwid, minheight, 0),
+				new Cuboid(env.maxX(), env.maxY(), maxlen, maxwid, maxheight, Math.PI), builder,
 				TransformToSurface.class, bpU.getpol2D());
 
 		// Distribution de poisson

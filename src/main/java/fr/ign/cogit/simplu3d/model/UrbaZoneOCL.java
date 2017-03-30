@@ -11,17 +11,18 @@ public class UrbaZoneOCL extends UrbaZone {
 		super();
 		this.setGeom(u.getGeom());
 		this.setSubParcels(u.getSubParcels());
+		this.setLibelle(u.getLibelle());
 
 	}
 
-	private List<Rule> rules = new ArrayList<Rule>();
+	private List<RuleOCL> rules = new ArrayList<RuleOCL>();
 
 	// Pour les règles de la zone urba
-	public void setRules(List<Rule> rules) {
+	public void setRules(List<RuleOCL> rules) {
 		this.rules = rules;
 	}
 
-	public List<Rule> getRules() {
+	public List<RuleOCL> getRules() {
 		return rules;
 	}
 

@@ -6,6 +6,7 @@ import org.apache.log4j.Logger;
 
 import fr.ign.cogit.simplu3d.checker.VeryFastRuleChecker;
 import fr.ign.cogit.simplu3d.model.BasicPropertyUnit;
+import fr.ign.cogit.simplu3d.model.CadastralParcel;
 import fr.ign.cogit.simplu3d.model.UrbaZoneOCL;
 import fr.ign.cogit.simplu3d.rjmcmc.cuboid.geometry.impl.AbstractSimpleBuilding;
 import fr.ign.rjmcmc.configuration.ConfigurationModificationPredicate;
@@ -53,11 +54,15 @@ public class ModelInstanceGraphConfigurationModificationPredicate<O extends Abst
 
   @Override
   public boolean check(ModelInstanceGraphConfiguration<O> c, ModelInstanceModification<O> m) {
+
     return this.check(c, m, true);
   }
 
   public boolean check(ModelInstanceGraphConfiguration<O> c, ModelInstanceModification<O> m, boolean cancelUpdate) {
-    List<IModelInstanceObject> list = c.update(m);
+	  
+	
+	List<IModelInstanceObject> list = c.update(m);
+
     boolean result = this.vFR.check(list);
     if (cancelUpdate) {
       c.cancelUpdate(m);

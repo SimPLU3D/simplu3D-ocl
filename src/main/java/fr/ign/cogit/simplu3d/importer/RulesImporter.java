@@ -4,7 +4,7 @@ import java.io.File;
 import java.util.List;
 
 import fr.ign.cogit.simplu3d.model.EnvironnementOCL;
-import fr.ign.cogit.simplu3d.model.Rule;
+import fr.ign.cogit.simplu3d.model.RuleOCL;
 import fr.ign.cogit.simplu3d.model.UrbaZoneOCL;
 import tudresden.ocl20.pivot.pivotmodel.Constraint;
 import tudresden.ocl20.pivot.standalone.facade.StandaloneFacade;
@@ -41,7 +41,7 @@ public class RulesImporter {
 
 				for (Constraint c : lC) {
 
-					Rule r = new Rule(c, (++id) + "");
+					RuleOCL r = new RuleOCL(c, (++id) + "");
 					z.getRules().add(r);
 
 				}

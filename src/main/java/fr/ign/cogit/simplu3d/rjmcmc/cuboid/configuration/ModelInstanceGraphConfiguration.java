@@ -1,9 +1,11 @@
 package fr.ign.cogit.simplu3d.rjmcmc.cuboid.configuration;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 import org.apache.log4j.Logger;
+import org.jgrapht.graph.SimpleWeightedGraph;
 
 import fr.ign.cogit.simplu3d.model.AbstractBuilding;
 import fr.ign.cogit.simplu3d.model.BasicPropertyUnit;
@@ -13,6 +15,8 @@ import fr.ign.cogit.simplu3d.model.SubParcel;
 import fr.ign.cogit.simplu3d.rjmcmc.cuboid.cache.CacheModelInstance;
 import fr.ign.cogit.simplu3d.rjmcmc.cuboid.geometry.impl.AbstractSimpleBuilding;
 import fr.ign.mpp.configuration.AbstractGraphConfiguration;
+import fr.ign.mpp.configuration.GraphEdge;
+import fr.ign.mpp.configuration.GraphVertex;
 import fr.ign.rjmcmc.energy.BinaryEnergy;
 import fr.ign.rjmcmc.energy.UnaryEnergy;
 import tudresden.ocl20.pivot.modelinstance.IModelInstance;
@@ -42,6 +46,9 @@ import tudresden.ocl20.pivot.modelinstancetype.types.IModelInstanceObject;
  * @param <T>
  */
 public class ModelInstanceGraphConfiguration<T extends AbstractSimpleBuilding>
+
+
+
 		extends
 		AbstractGraphConfiguration<T, ModelInstanceGraphConfiguration<T>, ModelInstanceModification<T>> {
 	/**
@@ -62,6 +69,14 @@ public class ModelInstanceGraphConfiguration<T extends AbstractSimpleBuilding>
 	public List<IModelInstanceObject> getCurrentModelInstanceObjectList() {
 		return this.currentModelInstanceObjectList;
 	}
+	
+	
+
+	public void setCurrentModelInstanceObjectList(List<IModelInstanceObject> currentModelInstanceObjectList) {
+		this.currentModelInstanceObjectList = currentModelInstanceObjectList;
+	}
+
+
 
 	public List<IModelInstanceObject> getBuildings() {
 		return this.mIEBat;
@@ -70,6 +85,7 @@ public class ModelInstanceGraphConfiguration<T extends AbstractSimpleBuilding>
 	public ModelInstanceGraphConfiguration(BasicPropertyUnit bPU,
 			IModelInstance mI, UnaryEnergy<T> unary_energy,
 			BinaryEnergy<T, T> binary_energy) {
+
 		this.unaryEnergy = unary_energy;
 		this.binaryEnergy = binary_energy;
 		this.globalEnergy = null;
@@ -80,9 +96,20 @@ public class ModelInstanceGraphConfiguration<T extends AbstractSimpleBuilding>
 //		this.dirty = false;
 //		this.useCache = false;
 
+		
+
+	  //  this.globalEnergy = global_energy;
+	   // this.unary = this.binary = this.global = 0;
+	    this.graph = new SimpleWeightedGraph<GraphVertex<T>, GraphEdge>(GraphEdge.class);
+	    this.vertexMap = new HashMap<T, GraphVertex<T>>();
+
+	    
 		this.propertyUnit = bPU;
 		this.modelInstance = mI;
 	}
+	
+	
+	 
 
 	// @Override
 	// public void apply(BirthDeathModification<T> m) {
@@ -155,6 +182,8 @@ public class ModelInstanceGraphConfiguration<T extends AbstractSimpleBuilding>
 		for (T aB : lBorn) {
 			if (lAB.indexOf(aB) == -1) {
 				LOGGER.error("Could not find : " + aB);
+				System.out.println("System EXIT (create) !!!!");
+				System.exit(0);
 			}
 		}
 		return lIME;
@@ -171,6 +200,7 @@ public class ModelInstanceGraphConfiguration<T extends AbstractSimpleBuilding>
 				for (T o : this.lAB) {
 					LOGGER.error(o);
 				}
+				System.out.println("System EXIT (destroy) !!!!");
 				System.exit(0);
 				continue;
 			}

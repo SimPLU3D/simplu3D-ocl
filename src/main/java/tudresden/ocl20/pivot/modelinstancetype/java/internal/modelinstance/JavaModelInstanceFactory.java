@@ -149,7 +149,7 @@ public class JavaModelInstanceFactory extends BasisJavaModelInstanceFactory
       String msg;
 
       msg = "createModelInstanceElement(Object) - exit"; //$NON-NLS-1$
-      msg += " - rseult = " + result; //$NON-NLS-1$
+      msg += " - result = " + result; //$NON-NLS-1$
 
       LOGGER.debug(msg);
     }

@@ -56,7 +56,7 @@ public class GraphConfigurationWithPredicate<T extends AbstractSimpleBuilding>
 	private List<IModelInstanceObject> mIEBat = new ArrayList<>();
 	private List<IModelInstanceElement> mIEFootP = new ArrayList<>();
 
-	GraphConfigurationPredicate<T> predicate;
+	
 
 	public List<IModelInstanceObject> getBuildings() {
 		return this.mIEBat;
@@ -72,9 +72,9 @@ public class GraphConfigurationWithPredicate<T extends AbstractSimpleBuilding>
 			GraphConfigurationPredicate<T> pred, UnaryEnergy<T> unary_energy,
 			BinaryEnergy<T, T> binary_energy) {
 		super(bPU, pred.getRuleChecker().getlModeInstance().get(0), unary_energy, binary_energy);
-//		super(unary_energy, binary_energy);
+
 		this.propertyUnit = bPU;
-		this.predicate = pred;
+	
 //		this.modelInstance = pred.getRuleChecker().getlModeInstance().get(0);// FIXME fix that
 	}
 

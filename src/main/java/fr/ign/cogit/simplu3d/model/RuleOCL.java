@@ -17,7 +17,7 @@ import tudresden.ocl20.pivot.pivotmodel.Constraint;
  * 
  * @version 1.0
  **/
-public class Rule {
+public class RuleOCL {
 
   public static int LAST_ID = 0;
 
@@ -27,7 +27,7 @@ public class Rule {
 
   public String text;
 
-  public Rule(Constraint constraint, String text) {
+  public RuleOCL(Constraint constraint, String text) {
     super();
     this.constraint = constraint;
     this.text = text;

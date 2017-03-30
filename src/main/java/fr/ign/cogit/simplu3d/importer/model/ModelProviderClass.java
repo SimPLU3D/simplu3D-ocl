@@ -13,7 +13,7 @@ import fr.ign.cogit.simplu3d.model.Prescription;
 import fr.ign.cogit.simplu3d.model.PublicSpace;
 import fr.ign.cogit.simplu3d.model.Road;
 import fr.ign.cogit.simplu3d.model.RoofSurface;
-import fr.ign.cogit.simplu3d.model.Rule;
+import fr.ign.cogit.simplu3d.model.RuleOCL;
 import fr.ign.cogit.simplu3d.model.SubParcel;
 import fr.ign.cogit.simplu3d.model.UrbaZoneOCL;
 import fr.ign.cogit.simplu3d.model.WallSurface;
@@ -53,7 +53,7 @@ public class ModelProviderClass {
 	protected PublicSpace pss;
 	protected BuildingPart bp;
 	protected EnvironnementOCL env;
-	protected Rule rule;
+	protected RuleOCL rule;
 	protected UrbaZoneOCL u;
 
 }

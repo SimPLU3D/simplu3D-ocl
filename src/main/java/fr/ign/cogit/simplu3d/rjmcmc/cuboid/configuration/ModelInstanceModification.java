@@ -25,5 +25,15 @@ public class ModelInstanceModification<T extends AbstractSimpleBuilding>
 	 * Create a new empty configuration.
 	 */
 	public ModelInstanceModification() {
+	
 	}
+
+	@Override
+	public void apply(ModelInstanceGraphConfiguration<T> c) {
+		super.apply(c);
+		c.setCurrentModelInstanceObjectList(c.update(this));
+	}
+	
+	
+	
 }

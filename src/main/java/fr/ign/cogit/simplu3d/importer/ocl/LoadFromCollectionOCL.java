@@ -6,7 +6,7 @@ import fr.ign.cogit.geoxygene.sig3d.semantic.AbstractDTM;
 import fr.ign.cogit.simplu3d.importer.RulesImporter;
 import fr.ign.cogit.simplu3d.io.LoadFromCollection;
 import fr.ign.cogit.simplu3d.model.EnvironnementOCL;
-import fr.ign.cogit.simplu3d.model.Rule;
+import fr.ign.cogit.simplu3d.model.RuleOCL;
 import fr.ign.cogit.simplu3d.model.UrbaZone;
 import fr.ign.cogit.simplu3d.model.UrbaZoneOCL;
 
@@ -46,7 +46,7 @@ public class LoadFromCollectionOCL {
 
 				RulesImporter.importer(ruleFolder, zOCL);
 				System.out.println("Zone " + z.getLibelle());
-				for (Rule rule : zOCL.getRules()) {
+				for (RuleOCL rule : zOCL.getRules()) {
 					System.out.println("rule " + rule.constraint + " with " + rule.text);
 				}
 

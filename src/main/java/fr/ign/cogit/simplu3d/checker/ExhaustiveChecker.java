@@ -7,7 +7,7 @@ import fr.ign.cogit.simplu3d.importer.model.ImportModelInstanceBasicPropertyUnit
 import fr.ign.cogit.simplu3d.model.BasicPropertyUnit;
 import fr.ign.cogit.simplu3d.model.CadastralParcel;
 import fr.ign.cogit.simplu3d.model.EnvironnementOCL;
-import fr.ign.cogit.simplu3d.model.Rule;
+import fr.ign.cogit.simplu3d.model.RuleOCL;
 import fr.ign.cogit.simplu3d.model.SubParcel;
 import fr.ign.cogit.simplu3d.model.UrbaZoneOCL;
 import tudresden.ocl20.pivot.essentialocl.standardlibrary.OclBoolean;
@@ -79,12 +79,12 @@ public class ExhaustiveChecker {
 	private BasicPropertyUnit bPU;
 
 	public boolean check(List<IModelInstanceObject> newBuildings) {
-
+		
 		int numberOfSubParcels = sPList.size();
 		for (int sPIndex = 0; sPIndex < numberOfSubParcels; sPIndex++) {
 			evalCount++;
 			int count = 0;
-			for (Rule rule : uz.getRules()) {
+			for (RuleOCL rule : uz.getRules()) {
 				for (IModelInstanceObject imiObject : lRelevantObjects) {
 					boolean isOk = interpret(imiObject, lModelInterpreter.get(sPIndex), rule.constraint);
 					if (!isOk) {
