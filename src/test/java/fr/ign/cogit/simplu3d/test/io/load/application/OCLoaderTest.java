@@ -4,10 +4,6 @@ import java.io.File;
 
 import org.junit.Test;
 
-import tudresden.ocl20.pivot.model.IModel;
-import tudresden.ocl20.pivot.modelinstance.IModelInstance;
-import tudresden.ocl20.pivot.modelinstancetype.java.internal.modelinstance.JavaModelInstance;
-import tudresden.ocl20.pivot.standalone.facade.StandaloneFacade;
 import fr.ign.cogit.geoxygene.api.spatial.coordgeom.IDirectPosition;
 import fr.ign.cogit.geoxygene.api.spatial.coordgeom.ITriangle;
 import fr.ign.cogit.geoxygene.api.spatial.geomaggr.IMultiSurface;
@@ -17,6 +13,10 @@ import fr.ign.cogit.geoxygene.spatial.coordgeom.GM_Triangle;
 import fr.ign.cogit.geoxygene.spatial.geomaggr.GM_MultiSurface;
 import fr.ign.cogit.simplu3d.importer.model.ImportModelInstanceEnvironnement;
 import fr.ign.cogit.simplu3d.model.SubParcel;
+import tudresden.ocl20.pivot.model.IModel;
+import tudresden.ocl20.pivot.modelinstance.IModelInstance;
+import tudresden.ocl20.pivot.modelinstancetype.java.internal.modelinstance.JavaModelInstance;
+import tudresden.ocl20.pivot.standalone.facade.StandaloneFacade;
 
 public class OCLoaderTest {
 

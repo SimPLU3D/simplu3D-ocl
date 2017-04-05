@@ -1,4 +1,4 @@
-package fr.ign.cogit.simplu3d.exe.ceus;
+package fr.ign.cogit.simplu3d.exe.demo;
 
 import java.io.File;
 import java.util.Collection;
@@ -29,25 +29,23 @@ import fr.ign.parameters.Parameters;
  * @author Mickael Brasebin
  *
  */
-public class DemoCEUS {
+public class DemoSimulationOCL {
 
 	public static void main(String[] args) throws Exception {
 
 		// Output shapefile where generated simulations are stored
 		String shapeFileOut = "/home/mickael/temp/shapeout.shp";
-		
-		
-		
-		//Relative path to input folder
-		String folderIn = "src/main/resources/fr/ign/cogit/simplu3d/dataceus/";
-		
-		//Integration of geographic data and OCL into the model (described in the section 4 of the article) 
+
+		// Relative path to input folder
+		String folderIn = "src/main/resources/fr/ign/cogit/simplu3d/datademo/";
+
+		// Integration of geographic data and OCL into the model (described in
+		// the section 4 of the article)
 		EnvironnementOCL env = LoaderSHPOCL.loadNoDTM(folderIn);
 
-		
-		//File that determines parameters for the simulator (inputs of the optimization algorithm - section 5 of the article)
-		File f= new File(
-				folderIn+ "simulation_parameters.xml");
+		// File that determines parameters for the simulator (inputs of the
+		// optimization algorithm - section 5 of the article)
+		File f = new File(folderIn + "simulation_parameters.xml");
 		Parameters p = Parameters.unmarshall(f);
 
 		int count = 0;
@@ -55,21 +53,22 @@ public class DemoCEUS {
 		IFeatureCollection<IFeature> iFeatC = new FT_FeatureCollection<>();
 
 		for (BasicPropertyUnit bpu : env.getBpU()) {
-			//Selectionning the zones that intersect the parcel
+			// Selectionning the zones that intersect the parcel
 			Collection<UrbaZoneOCL> zoneColection = env.getUrbaZoneOCL().select(bpu.getGeom());
-			
-			//The first is the right one 
-			UrbaZoneOCL zone =  (UrbaZoneOCL) zoneColection.toArray()[0];
-			
-			//Definition of the predicate that checks the rule with the chosen zone and rules parameters
+
+			// The first is the right one
+			UrbaZoneOCL zone = (UrbaZoneOCL) zoneColection.toArray()[0];
+
+			// Definition of the predicate that checks the rule with the chosen
+			// zone and rules parameters
 			ModelInstanceGraphConfigurationModificationPredicate<Cuboid> pred = new ModelInstanceGraphConfigurationModificationPredicate<Cuboid>(
 					bpu, zone);
-			
-			//Insanciation of the optimizer
-			OCLBuildingsCuboidFinalDirectRejection optimizer = new OCLBuildingsCuboidFinalDirectRejection();
-			
 
-			//Execution of the optimization process on the bpu, with selected parameters, environnement, predicate
+			// Insanciation of the optimizer
+			OCLBuildingsCuboidFinalDirectRejection optimizer = new OCLBuildingsCuboidFinalDirectRejection();
+
+			// Execution of the optimization process on the bpu, with selected
+			// parameters, environnement, predicate
 			ModelInstanceGraphConfiguration<Cuboid> modelInstance = optimizer.process(bpu, p, env, pred, count);
 
 			// For all generated boxes
@@ -92,7 +91,7 @@ public class DemoCEUS {
 
 			count++;
 		}
-
+		//Writing output shapefile
 		ShapefileWriter.write(iFeatC, shapeFileOut);
 
 	}

@@ -88,9 +88,6 @@
 	<param key="ymaxbg" value="6841006.49397" />
 	<param key="z" value="138" />
 
-	<!-- Output ShapeFileWriter (shapefile is writter every nbsave iterations) -->
-	<param key="shapefilewriter" value="true" />
-	<param key="result" value="/tmp/"
 	<!-- Output Statsvisitor (graphical output of energy function evolution)-->
 	<param key="statsvisitor" value="false" />
 

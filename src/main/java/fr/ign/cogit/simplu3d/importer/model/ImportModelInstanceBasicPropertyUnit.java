@@ -3,12 +3,6 @@ package fr.ign.cogit.simplu3d.importer.model;
 import java.io.File;
 import java.net.URL;
 
-import tudresden.ocl20.pivot.model.IModel;
-import tudresden.ocl20.pivot.modelinstance.IModelInstance;
-import tudresden.ocl20.pivot.modelinstancetype.exception.TypeNotFoundInModelException;
-import tudresden.ocl20.pivot.modelinstancetype.java.internal.modelinstance.JavaModelInstance;
-import tudresden.ocl20.pivot.modelinstancetype.types.IModelInstanceObject;
-import tudresden.ocl20.pivot.standalone.facade.StandaloneFacade;
 import fr.ign.cogit.geoxygene.api.feature.IFeature;
 import fr.ign.cogit.simplu3d.model.AbstractBuilding;
 import fr.ign.cogit.simplu3d.model.CadastralParcel;
@@ -16,6 +10,12 @@ import fr.ign.cogit.simplu3d.model.ParcelBoundary;
 import fr.ign.cogit.simplu3d.model.Road;
 import fr.ign.cogit.simplu3d.model.SubParcel;
 import fr.ign.cogit.simplu3d.model.WallSurface;
+import tudresden.ocl20.pivot.model.IModel;
+import tudresden.ocl20.pivot.modelinstance.IModelInstance;
+import tudresden.ocl20.pivot.modelinstancetype.exception.TypeNotFoundInModelException;
+import tudresden.ocl20.pivot.modelinstancetype.java.internal.modelinstance.JavaModelInstance;
+import tudresden.ocl20.pivot.modelinstancetype.types.IModelInstanceObject;
+import tudresden.ocl20.pivot.standalone.facade.StandaloneFacade;
 /**
  * 
  *        This software is released under the licence CeCILL

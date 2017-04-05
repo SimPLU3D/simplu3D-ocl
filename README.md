@@ -32,9 +32,10 @@ This software is free to use under CeCILL license. However, if you use this libr
 
 Furthermore, we are interested in every feedbacks about this library if you find it useful, if you want to contribute or if you have some suggestions to improve it.
 
-Test class
+Test classes
 ---------------------
 
+**For checking rules **
 
 A test class TestOCLConstraint is implemented in the package : fr.ign.cogit.simplu3d.test.checker.
 
@@ -57,11 +58,82 @@ public class TestOCLConstraint {
     Assert.assertEquals(true, true);
   }
 ```
+A large set of rules, from Strasbourg Local Urban Plan, is available in the file /simplu3d-ocl/src/main/resources/fr/ign/cogit/simplu3d/ocl_test
+
+**For building simulation **
+
+A test class (fr.ign.cogit.simplu3d.exe.demo.DemoSimulationOCL) is implemented according to a simulation presented in a paper (under submission). All the used resources, including geographic data, simulation parameters and OCL rules are available in the "src/main/resources/fr/ign/cogit/simplu3d/datademo/" folder.
+
+
+
+```Java
+		// Output shapefile where generated simulations are stored
+		String shapeFileOut = "/home/mickael/temp/shapeout.shp";
+
+		// Relative path to input folder
+		String folderIn = "src/main/resources/fr/ign/cogit/simplu3d/datademo/";
+
+		// Integration of geographic data and OCL into the model (described in
+		// the section 4 of the article)
+		EnvironnementOCL env = LoaderSHPOCL.loadNoDTM(folderIn);
+
+		// File that determines parameters for the simulator (inputs of the
+		// optimization algorithm - section 5 of the article)
+		File f = new File(folderIn + "simulation_parameters.xml");
+		Parameters p = Parameters.unmarshall(f);
+
+		int count = 0;
+		// Writing the output
+		IFeatureCollection<IFeature> iFeatC = new FT_FeatureCollection<>();
+
+		for (BasicPropertyUnit bpu : env.getBpU()) {
+			// Selectionning the zones that intersect the parcel
+			Collection<UrbaZoneOCL> zoneColection = env.getUrbaZoneOCL().select(bpu.getGeom());
+
+			// The first is the right one
+			UrbaZoneOCL zone = (UrbaZoneOCL) zoneColection.toArray()[0];
+
+			// Definition of the predicate that checks the rule with the chosen
+			// zone and rules parameters
+			ModelInstanceGraphConfigurationModificationPredicate<Cuboid> pred = new ModelInstanceGraphConfigurationModificationPredicate<Cuboid>(
+					bpu, zone);
+
+			// Insanciation of the optimizer
+			OCLBuildingsCuboidFinalDirectRejection optimizer = new OCLBuildingsCuboidFinalDirectRejection();
+
+			// Execution of the optimization process on the bpu, with selected
+			// parameters, environnement, predicate
+			ModelInstanceGraphConfiguration<Cuboid> modelInstance = optimizer.process(bpu, p, env, pred, count);
+
+			// For all generated boxes
+			for (GraphVertex<Cuboid> v : modelInstance.getGraph().vertexSet()) {
+
+				// Output feature with generated geometry
+				IFeature feat = new DefaultFeature(v.getValue().generated3DGeom());
+
+				// We write some attributes
+				AttributeManager.addAttribute(feat, "Longueur", Math.max(v.getValue().length, v.getValue().width),
+						"Double");
+				AttributeManager.addAttribute(feat, "Largeur", Math.min(v.getValue().length, v.getValue().width),
+						"Double");
+				AttributeManager.addAttribute(feat, "Hauteur", v.getValue().height, "Double");
+				AttributeManager.addAttribute(feat, "Rotation", v.getValue().orientation, "Double");
+
+				iFeatC.add(feat);
+
+			}
+
+			count++;
+		}
+		//Writing output shapefile
+		ShapefileWriter.write(iFeatC, shapeFileOut);
+```
+
 
 Contact for feedbacks
 ---------------------
 [Mickaël Brasebin](http://recherche.ign.fr/labos/cogit/cv.php?nom=Brasebin) & [Julien Perret](http://recherche.ign.fr/labos/cogit/cv.php?prenom=Julien&nom=Perret)
-[Cogit Laboratory](http://recherche.ign.fr/labos/cogit/accueilCOGIT.php)
+[Cogit team](http://recherche.ign.fr/labos/cogit/accueilCOGIT.php)
 
 
 Acknowledgments
@@ -70,3 +142,5 @@ Acknowledgments
 + This research is supported by the French National Mapping Agency ([IGN](http://www.ign.fr))
 + It is partially funded by the FUI TerraMagna project and by Île-de-France
 Région in the context of [e-PLU projet](www.e-PLU.fr)
+
+

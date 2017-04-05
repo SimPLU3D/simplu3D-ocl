@@ -9,6 +9,7 @@ import org.eclipse.emf.common.util.TreeIterator;
 import org.eclipse.emf.ecore.EObject;
 import org.junit.Test;
 
+import fr.ign.cogit.simplu3d.importer.model.ImportModelInstanceEnvironnement;
 import tudresden.ocl20.pivot.essentialocl.expressions.impl.ExpressionInOclImpl;
 import tudresden.ocl20.pivot.essentialocl.expressions.impl.IntegerLiteralExpImpl;
 import tudresden.ocl20.pivot.essentialocl.expressions.impl.IteratorExpImpl;
@@ -22,7 +23,6 @@ import tudresden.ocl20.pivot.parser.ParseException;
 import tudresden.ocl20.pivot.pivotmodel.Constraint;
 import tudresden.ocl20.pivot.pivotmodel.impl.ConstraintImpl;
 import tudresden.ocl20.pivot.standalone.facade.StandaloneFacade;
-import fr.ign.cogit.simplu3d.importer.model.ImportModelInstanceEnvironnement;
 
 
 /**

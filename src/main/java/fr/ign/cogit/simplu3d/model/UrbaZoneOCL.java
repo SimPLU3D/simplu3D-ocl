@@ -3,8 +3,6 @@ package fr.ign.cogit.simplu3d.model;
 import java.util.ArrayList;
 import java.util.List;
 
-import fr.ign.cogit.simplu3d.model.UrbaZone;
-
 public class UrbaZoneOCL extends UrbaZone {
 
 	public UrbaZoneOCL(UrbaZone u) {
