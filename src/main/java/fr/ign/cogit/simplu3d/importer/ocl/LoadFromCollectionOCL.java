@@ -1,5 +1,9 @@
 package fr.ign.cogit.simplu3d.importer.ocl;
 
+
+
+import org.apache.log4j.Logger;
+
 import fr.ign.cogit.geoxygene.api.feature.IFeature;
 import fr.ign.cogit.geoxygene.api.feature.IFeatureCollection;
 import fr.ign.cogit.geoxygene.sig3d.semantic.AbstractDTM;
@@ -27,6 +31,8 @@ import fr.ign.cogit.simplu3d.model.UrbaZoneOCL;
  * @version 1.0
  **/
 public class LoadFromCollectionOCL {
+	
+	public static Logger logger = Logger.getLogger(LoadFromCollectionOCL.class);
 
 	public static EnvironnementOCL load(IFeature featPLU, IFeatureCollection<IFeature> zoneColl,
 			IFeatureCollection<IFeature> parcelleColl, IFeatureCollection<IFeature> voirieColl,
@@ -45,9 +51,9 @@ public class LoadFromCollectionOCL {
 				envOCL.getUrbaZoneOCL().add(zOCL);
 
 				RulesImporter.importer(ruleFolder, zOCL);
-				System.out.println("Zone " + z.getLibelle());
+				logger.info("Zone " + z.getLibelle());
 				for (RuleOCL rule : zOCL.getRules()) {
-					System.out.println("rule " + rule.constraint + " with " + rule.text);
+					logger.info("rule " + rule.constraint + " with " + rule.text);
 				}
 
 			}

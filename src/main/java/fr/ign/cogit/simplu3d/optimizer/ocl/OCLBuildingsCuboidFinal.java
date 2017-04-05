@@ -110,7 +110,7 @@ public class OCLBuildingsCuboidFinal {
 		// Définition de la fonction d'optimisation (on optimise en décroissant)
 		// relative au volume
 		ModelInstanceGraphConfiguration<Cuboid> conf = null;
-		System.out.println(pred.getRuleChecker().getlModeInstance().size() + " model instances");
+		
 		try {
 			conf = create_configuration(p, AdapterFactory.toGeometry(new GeometryFactory(), geom), bpu,
 					pred.getRuleChecker().getlModeInstance().get(0));
@@ -136,7 +136,7 @@ public class OCLBuildingsCuboidFinal {
 			conf.deltaEnergy(m);
 			// conf.apply(m);
 			m.apply(conf);
-			System.out.println("First update OK");
+			
 		}
 		// EndTest<Cuboid2, Configuration<Cuboid2>, SimpleTemperature,
 		// Sampler<Cuboid2, Configuration<Cuboid2>, SimpleTemperature>> end =
@@ -321,7 +321,7 @@ public class OCLBuildingsCuboidFinal {
 		UniformBirth<Cuboid> birth = new UniformBirth<Cuboid>(rng,
 				new Cuboid(env.minX(), env.minY(), mindim, mindim, minheight, 0),
 				new Cuboid(env.maxX(), env.maxY(), maxdim, maxdim, maxheight, Math.PI), builder,
-				TransformToSurface.class, bpU.getpol2D());
+				TransformToSurface.class, bpU.getPol2D());
 
 		// Distribution de poisson
 		PoissonDistribution distribution = new PoissonDistribution(rng, p.getDouble("poisson"));

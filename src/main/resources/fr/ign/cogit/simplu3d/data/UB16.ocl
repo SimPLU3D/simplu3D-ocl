@@ -6,7 +6,7 @@ package  fr::ign::cogit::simplu3d::model
 
 
 context BasicPropertyUnit
-inv: (self.getBuildings().getFootprint().area()->sum()) < (1 * self.getArea())
+inv: (self.getBuildings().select(s | s.isNew).getFootprint().area()->sum()) < (1 * self.getArea())
 
 
 

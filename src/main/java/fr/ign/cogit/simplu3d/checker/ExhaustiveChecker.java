@@ -3,6 +3,8 @@ package fr.ign.cogit.simplu3d.checker;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.apache.log4j.Logger;
+
 import fr.ign.cogit.simplu3d.importer.model.ImportModelInstanceBasicPropertyUnit;
 import fr.ign.cogit.simplu3d.model.BasicPropertyUnit;
 import fr.ign.cogit.simplu3d.model.CadastralParcel;
@@ -45,6 +47,8 @@ public class ExhaustiveChecker {
 	private List<SubParcel> sPList = new ArrayList<SubParcel>();
 	private List<IModelInstanceObject> lRelevantObjects = new ArrayList<>();
 	private List<IOclInterpreter> lModelInterpreter = new ArrayList<>();
+	
+	public static Logger logger = Logger.getLogger(ExhaustiveChecker.class);
 
 	private List<IModelInstance> lModelInstance = new ArrayList<>();
 
@@ -153,25 +157,25 @@ public class ExhaustiveChecker {
 			if (result.getResult() instanceof OclBoolean) {
 				OclBoolean bool = (OclBoolean) result.getResult();
 				if (bool.oclIsInvalid().isTrue()) {
-					System.out.println("Règle invérifiable");
-					System.out.println("  " + result.getModelObject() + " (" + result.getConstraint().getKind() + ": "
+					logger.warn("Règle invérifiable");
+					logger.warn("  " + result.getModelObject() + " (" + result.getConstraint().getKind() + ": "
 							+ result.getConstraint().getSpecification().getBody() + "): " + result.getResult());
 				}
 				if (!bool.isTrue()) {
-					System.out.println("Règle non vérifiée");
-					System.out.println(imiObject);
+					logger.debug("Règle non vérifiée");
+					logger.debug(imiObject);
 
-					System.out.println("  " + result.getModelObject() + " (" + result.getConstraint().getKind() + ": "
+					logger.debug("  " + result.getModelObject() + " (" + result.getConstraint().getKind() + ": "
 							+ result.getConstraint().getSpecification().getBody() + "): " + result.getResult());
 
 					return false;
 				}
 
-				System.out.println("  " + result.getModelObject() + " (" + result.getConstraint().getKind() + ": "
+				logger.info("  " + result.getModelObject() + " (" + result.getConstraint().getKind() + ": "
 						+ result.getConstraint().getSpecification().getBody() + "): " + result.getResult());
 
 			} else {
-				System.out.println("  " + result.getModelObject() + " (" + result.getConstraint().getKind() + ": "
+				logger.info("  " + result.getModelObject() + " (" + result.getConstraint().getKind() + ": "
 						+ result.getConstraint().getSpecification().getBody() + "): " + result.getResult());
 			}
 		}

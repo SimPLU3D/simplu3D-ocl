@@ -77,14 +77,7 @@ public class CacheModelInstance<O extends AbstractBuilding> {
     }
     List<IModelInstanceObject> lIME = addElements(birthCopy);
     killElements(deathCopy);
-    /*
-     * for (IModelInstanceObject o : mI.getAllModelInstanceObjects()) {
-     * Object oTemp = o.getObject();
-     * if (oTemp instanceof Building) { Building ab = (Building) oTemp;
-     * if (ab.getbPU() == null) { System.out.println("STOOOOOP");
-     * createLink(ab, bPU); } }
-     * }
-     */
+
     LOGGER.debug(this.toString());
     return lIME;
   }
@@ -113,17 +106,7 @@ public class CacheModelInstance<O extends AbstractBuilding> {
       } catch (TypeNotFoundInModelException e) {
         e.printStackTrace();
       }
-      /*
-       * int indTemp = lAB.size() - 1; IModelInstanceObject iME =
-       * (IModelInstanceObject) mIE.get(indTemp); if
-       * (!lAB.get(indTemp).toString().equals(iME.getObject().toString())) {
-       * System.out.println("Diffère");
-       * try { aB.setbPU(bPU); IModelInstanceElement iMetemp =
-       * mI.addModelInstanceElement(aB); System.out.println("Stem"); } catch
-       * (TypeNotFoundInModelException e) { // TODO Auto-generated catch block
-       * e.printStackTrace(); }
-       * }
-       */
+
     }
     for (O aB : lBorn) {
       if (lAB.indexOf(aB) == -1) {

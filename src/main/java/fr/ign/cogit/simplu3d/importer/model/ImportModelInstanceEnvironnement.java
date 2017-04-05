@@ -3,6 +3,8 @@ package fr.ign.cogit.simplu3d.importer.model;
 import java.io.File;
 import java.net.URL;
 
+import org.apache.log4j.Logger;
+
 import fr.ign.cogit.simplu3d.model.AbstractBuilding;
 import fr.ign.cogit.simplu3d.model.Environnement;
 import fr.ign.cogit.simplu3d.model.SubParcel;
@@ -28,6 +30,8 @@ import tudresden.ocl20.pivot.standalone.facade.StandaloneFacade;
  * @version 1.0
  **/
 public class ImportModelInstanceEnvironnement {
+	
+	private final static Logger logger = Logger.getLogger(ImportModelInstanceEnvironnement.class);
 
   public static IModel getModel(String modelPorviderURL) {
 
@@ -77,7 +81,7 @@ public class ImportModelInstanceEnvironnement {
     for (SubParcel sp : env.getSubParcels()) {
       modelInstance.addModelInstanceElement(sp);
       if (sp.getGeom() == null) {
-        System.out.println("Patata");
+    	  logger.error("SubParcel empty : "+ sp.toString());
       }
       modelInstance.addModelInstanceElement(sp.getLod2MultiSurface());
       modelInstance.addModelInstanceElement(sp.getGeom());

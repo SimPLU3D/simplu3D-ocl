@@ -3,6 +3,8 @@ package fr.ign.cogit.simplu3d.checker;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.apache.log4j.Logger;
+
 import fr.ign.cogit.simplu3d.importer.model.ImportModelInstanceBasicPropertyUnit;
 import fr.ign.cogit.simplu3d.model.BasicPropertyUnit;
 import fr.ign.cogit.simplu3d.model.CadastralParcel;
@@ -50,6 +52,8 @@ public class VeryFastRuleChecker {
   public int evalFalse = 0;
 
   public List<List<Integer>> lFalseArray = new ArrayList<>();
+  
+  private final static Logger logger = Logger.getLogger(VeryFastRuleChecker.class);
 
   public int getEvalCount() {
     return evalCount;
@@ -142,14 +146,14 @@ public class VeryFastRuleChecker {
       result = interpret.interpretConstraint(c, imiObject);
     } catch (Exception e) {
       e.printStackTrace();
-      System.out.println("Interpret exit");
+      logger.error("Interpret exit");
       System.exit(0);
     }
     if (result != null) {
       if (result.getResult() instanceof OclBoolean) {
         OclBoolean bool = (OclBoolean) result.getResult();
         if (bool.oclIsInvalid().isTrue()) {
-          System.out.println("  " + result.getModelObject() + " ("
+        	logger.warn("  " + result.getModelObject() + " ("
               + result.getConstraint().getKind() + ": "
               + result.getConstraint().getSpecification().getBody() + "): " + result.getResult());
         }
@@ -165,14 +169,14 @@ public class VeryFastRuleChecker {
           return false;
         }
         
-        System.out.println("  " + result.getModelObject() + " (" +
+        logger.debug("  " + result.getModelObject() + " (" +
         result.getConstraint().getKind() + ": " +
         result.getConstraint().getSpecification().getBody() + "): " +
         result.getResult());
         
         
       } else {
-        System.out.println("  " + result.getModelObject() + " (" + result.getConstraint().getKind()
+    	  logger.debug("  " + result.getModelObject() + " (" + result.getConstraint().getKind()
             + ": " + result.getConstraint().getSpecification().getBody() + "): "
             + result.getResult());
       }

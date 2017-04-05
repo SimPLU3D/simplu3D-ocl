@@ -50,7 +50,7 @@ public class GraphConfigurationPredicate<O extends AbstractSimpleBuilding>
 
 	@Override
 	public boolean check(GraphConfigurationWithPredicate<O> c) {
-		System.out.println("Je check");
+
 		return this.vFR.check(c.getCurrent());
 	}
 }

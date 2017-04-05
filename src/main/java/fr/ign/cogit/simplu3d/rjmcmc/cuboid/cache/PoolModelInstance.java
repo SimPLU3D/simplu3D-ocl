@@ -3,6 +3,8 @@ package fr.ign.cogit.simplu3d.rjmcmc.cuboid.cache;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.apache.log4j.Logger;
+
 import fr.ign.cogit.simplu3d.model.AbstractBuilding;
 import fr.ign.cogit.simplu3d.model.BasicPropertyUnit;
 import fr.ign.cogit.simplu3d.model.Building;
@@ -29,6 +31,8 @@ import tudresden.ocl20.pivot.modelinstancetype.types.IModelInstanceObject;
  * @version 1.0
  **/ 
 public class PoolModelInstance {
+	
+	private final static Logger logger = Logger.getLogger(PoolModelInstance.class);
 
   private List<AbstractBuilding> lAB = new ArrayList<>();
   private List<IModelInstanceElement> mIEBat = new ArrayList<>();
@@ -190,8 +194,8 @@ public class PoolModelInstance {
       int ind = lAB.indexOf(a);
 
       if (ind == -1) {
-        System.out.println("Je passe là");
-        continue;
+    	  logger.error("Object not found in cache");
+        continue;	
 
       }
 

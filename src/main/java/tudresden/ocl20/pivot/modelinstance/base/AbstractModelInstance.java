@@ -262,7 +262,7 @@ public abstract class AbstractModelInstance implements IModelInstance {
 				this.myModelInstanceObjectsByType.remove(imiObject.getType());
 			}*/
 		}else{
-		 // System.out.println("C'est null1 ");
+	
 		}
 
 		this.myModelInstanceObjects.remove(imiObject);
@@ -276,7 +276,6 @@ public abstract class AbstractModelInstance implements IModelInstance {
 		  
 		  if(out == null){
 
-		    System.out.println("C'est nulllllllll");
 		  }
 		  
 		  

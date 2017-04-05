@@ -182,7 +182,7 @@ public class ModelInstanceGraphConfiguration<T extends AbstractSimpleBuilding>
 		for (T aB : lBorn) {
 			if (lAB.indexOf(aB) == -1) {
 				LOGGER.error("Could not find : " + aB);
-				System.out.println("System EXIT (create) !!!!");
+				LOGGER.error("System EXIT (create) !!!!");
 				System.exit(0);
 			}
 		}
@@ -200,7 +200,7 @@ public class ModelInstanceGraphConfiguration<T extends AbstractSimpleBuilding>
 				for (T o : this.lAB) {
 					LOGGER.error(o);
 				}
-				System.out.println("System EXIT (destroy) !!!!");
+				LOGGER.error("System EXIT (destroy) !!!!");
 				System.exit(0);
 				continue;
 			}

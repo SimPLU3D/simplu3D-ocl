@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<parameters>
+
+	<!-- Parameters related to the optimization function-->
+	<!-- Creation energy (cost of creating a new box). It means that a new box is kept-->
+	<!-- if it adds a volume greater that this value to the configuration -->
+	<param key="energy" value="12" />
+	<!-- Ponderation of the volume -->
+	<param key="ponderation_volume" value="1" />
+	<!-- Negative ponderation to parts of the boxes that are not inside the parcel  -->
+	<param key="ponderation_difference_ext" value="3" />
+	<!-- Negative ponderation to remove intersection between boxes -->
+	<param key="ponderation_volume_inter" value="1" />
+
+
+	<!--Equiprobable distribution for box sizes -->
+	<!-- Minimal and maximal length and with -->
+	<param key="minlen" value="1" />
+	<param key="maxlen" value="30" />
+		
+	<param key="minwid" value="1" />
+	<param key="maxwid" value="30" />
+	
+	<!-- Minimal and maximal height -->
+	<param key="minheight" value="2" />
+	<param key="maxheight" value="15" />
+
+	<!-- Probabilities  -->
+	<!-- Creation and deltion of boxes -->
+	<!-- The other moves have the same proabability-->
+	<param key="pbirth" value="0.2" />
+	<param key="pdeath" value="0.5" />
+	<!-- Modifications ! -->
+	<!-- Maximal amplitude of length or width modification (m) ! -->
+	<param key="amplitudeMaxDim" value="2" />
+	<!-- Maximal amplitude of height modification -->
+	<param key="amplitudeHeight" value="2" />
+	<!-- Maximal amplitude of box displacement-->
+	<param key="amplitudeMove" value="2" />
+	<!-- Maximal amplitude of box rotation in dedgree ! -->
+	<param key="amplitudeRotate" value="180" />
+
+	<!--Temperature parameters (geometric decrease function -->
+	<!-- current_temp =  temp * deccoef^number_of_iteration  -->
+	<!-- Initial temperature-->
+	<param key="temp" value="14000" />
+	<!-- Decrease coefficient -->
+	<param key="deccoef" value="0.99999" />
+
+	<!-- Re-use of existing configuration -->
+	<!-- 0 = no 1 = yes ! -->
+	<param key="load_existing_config" value="0" />
+	<!-- Path of the configuration ! -->
+	<param key="config_shape_file"
+		value="C:/Users/mbrasebin/Desktop/Exp1/test1/result_1975488   .shp" />
+
+
+	<!--  Number of iterations -->
+	<!-- Indicates if it is an absolute number of iteration or a stability-->
+	<!-- end test condition. -->
+	<param key="isAbsoluteNumber" value="false" />
+	<!-- Number of iterations-->
+	<param key="nbiter" value="100000" />
+	<!-- Variation allowed to stop if stability end test is chosen-->
+	<param key="delta" value="5" />
+
+
+	<param key="poisson" value="20" />
+
+	<!-- Parameters related to visitors -->
+	<!-- Number of iterations for dump (quick output) -->
+	<param key="nbdump" value="2000" />
+	<!-- Number of iterations for save (slow output) -->
+	<param key="nbsave" value="10000" />
+	<!-- Used visitors-->
+	<!-- Console output-->
+	<param key="outputstreamvisitor" value="true" />
+	<!-- 3D output-->
+	<!-- Warning : in this case Java3D binaries have to -->
+	<!-- be precised in -Djava.library.path (see ) -->
+	<!-- -Djava.library.path="/home/mickael/data/mbrasebin/workspace/simPLU3D/simplu3D/lib/native_libraries/linux-amd64/" -->
+	<param key="visitorviewer" value="true" />
+	<param key="background_img" value="background3D.png" />
+	<param key="showbackground" value="true" />
+	<param key="xminbg" value="1052572.48956" />
+	<param key="xmaxbg" value="1052373.72956" />
+	<param key="yminbg" value="6840777.25897" />
+	<param key="ymaxbg" value="6841006.49397" />
+	<param key="z" value="138" />
+
+	<!-- Output ShapeFileWriter (shapefile is writter every nbsave iterations) -->
+	<param key="shapefilewriter" value="true" />
+	<param key="result" value="/tmp/"
+	<!-- Output Statsvisitor (graphical output of energy function evolution)-->
+	<param key="statsvisitor" value="false" />
+
+</parameters>
+
+
+
+
+

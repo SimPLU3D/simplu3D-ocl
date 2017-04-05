@@ -82,18 +82,18 @@ self.getBuildingsParts().footprint .distance(g)->min() > 1.9)
 
 -- context SubParcel inv:
 -- self.getBuildingsParts().bandEpsilon(self.getBoundaries().select(type='LAT'), 0, 13).forAll(bP |
--- self.getBoundaries().select(type<>'FIC').geom.forAll(g | bP.prospect(g,0,0.5)))
+-- self.getBoundaries().select(type<>'FIC').geom.forAll(g | bP.prospect(g,0.5,0)))
 
 -- At a distance greater than 20 m  from road border, building must be buildt under a plan define by a height 0 along back and lateral separative limits and a coefficent of 0.5.
 
 -- Desactivated as the model is evolving
 
 --context SubParcel inv:
---self.getBuildingsParts().bandEpsilon(self.getConsLine(), 20, 1).forAll(bP | self.getBoundaries().select(type='BACK' or --type='LAT').geom.forAll(g | bP.prospect(g,0,0.5)))
+--self.getBuildingsParts().bandEpsilon(self.getConsLine(), 20, 1).forAll(bP | self.getBoundaries().select(type='BACK' or --type='LAT').geom.forAll(g | bP.prospect(g,0.5,0)))
 
 -- At a distance greater than 20 m  from road border, building must be buildt at a distance greater than 3 m from back and lateral separative 
 
---context SubParcel inv:
+--context CadastralParcel inv:
 --self.getBoundaries().select(type='BACK' or type='LAT').geom->forAll(g |self.getBuildingsParts().bandEpsilon(self.getConsLine(), 20, --1).footprint.distance(g)->min() > 3)
 
 ------ Article 9 ------
