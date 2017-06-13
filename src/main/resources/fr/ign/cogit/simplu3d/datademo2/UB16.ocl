@@ -1,0 +1,30 @@
+package  fr::ign::cogit::simplu3d::model
+
+
+--context Building
+--inv: self.height(1,2) < 12
+
+
+context BasicPropertyUnit
+inv: (self.getBuildings().select(s | s.isNew).getFootprint().area()->sum()) < (1 * self.getArea())
+
+
+
+--context Building
+--inv: self.isNew implies self.getbPU().getCadastralParcels().getBoundaries()->select(s | s.type=4).geom.distance(self.getFootprint())->min()<4.5
+
+
+
+--context Building
+--inv: self.isNew implies self.getbPU().getCadastralParcels().getBoundaries()->select(s | s.type=4).geom.distance(self.getFootprint())->min()>4
+
+
+--context Building
+--inv: self.isNew implies self.getbPU().getCadastralParcels().getBoundaries()->select(s | s.type=0).geom.distance(self.getFootprint())->min()> 27
+
+
+--context Building
+--inv: self.isNew implies self.getbPU().getCadastralParcels().getSubParcels().forAll(sb | sb.getGeom().contains(self.getFootprint()))
+
+
+endpackage

@@ -84,6 +84,7 @@ public class VeryFastRuleChecker {
      * System.out.println("Type : " + t + "  "
      * +lModeInstance.get(0).getAllInstances(t).size()); }
      */
+	
     int numberOfSubParcels = sPList.size();
     for (int sPIndex = 0; sPIndex < numberOfSubParcels; sPIndex++) {
       evalCount++;
@@ -94,6 +95,7 @@ public class VeryFastRuleChecker {
           if (!isOk) {
             lFalseArray.get(sPIndex).set(count, lFalseArray.get(sPIndex).get(count) + 1);
             evalFalse++;
+
             return false;
           }
         }

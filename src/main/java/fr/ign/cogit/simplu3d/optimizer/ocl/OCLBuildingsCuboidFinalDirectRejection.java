@@ -31,6 +31,8 @@ import fr.ign.cogit.simplu3d.rjmcmc.cuboid.transformation.birth.TransformToSurfa
 import fr.ign.cogit.simplu3d.rjmcmc.generic.energy.DifferenceVolumeUnaryEnergy;
 import fr.ign.cogit.simplu3d.rjmcmc.generic.energy.IntersectionVolumeBinaryEnergy;
 import fr.ign.cogit.simplu3d.rjmcmc.generic.energy.VolumeUnaryEnergy;
+import fr.ign.cogit.simplu3d.rjmcmc.generic.object.ISimPLU3DPrimitive;
+import fr.ign.cogit.simplu3d.rjmcmc.generic.optimizer.DefaultSimPLU3DOptimizer;
 import fr.ign.cogit.simplu3d.rjmcmc.generic.sampler.GreenSamplerBlockTemperature;
 import fr.ign.cogit.simplu3d.rjmcmc.generic.visitor.CSVendStats;
 import fr.ign.cogit.simplu3d.rjmcmc.generic.visitor.CSVvisitor;
@@ -88,7 +90,7 @@ import tudresden.ocl20.pivot.modelinstance.IModelInstance;
  *          Using a DirectRejectionSampler.
  * 
  */
-public class OCLBuildingsCuboidFinalDirectRejection {
+public class OCLBuildingsCuboidFinalDirectRejection extends DefaultSimPLU3DOptimizer<ISimPLU3DPrimitive> {
 
 	private double coeffDec = Double.NaN;
 	private double deltaConf = Double.NaN;
@@ -358,7 +360,7 @@ public class OCLBuildingsCuboidFinalDirectRejection {
 		return s;
 	}
 
-	private static EndTest create_end_test(Parameters p) {
+	public EndTest create_end_test(Parameters p) {
 		return new MaxIterationEndTest(p.getInteger("nbiter"));
 	}
 
@@ -372,7 +374,7 @@ public class OCLBuildingsCuboidFinalDirectRejection {
 		return new StabilityEndTest<Cuboid>(p.getInteger("nbiter"), loc_deltaconf);
 	}
 
-	private Schedule<SimpleTemperature> create_schedule(Parameters p) {
+	public Schedule<SimpleTemperature> create_schedule(Parameters p) {
 		double coefDef = 0;
 		if (Double.isNaN(this.coeffDec)) {
 			coefDef = p.getDouble("deccoef");

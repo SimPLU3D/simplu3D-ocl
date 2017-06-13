@@ -11,9 +11,9 @@ context BasicPropertyUnit inv:
 self.getBuildings().forAll(bP | self.getCadastralParcels().getBoundaries().getGeom().forAll(g | bP.prospect(g,0.5,0)))
 
 
--- Rule 3 : Distance between two non contiguous building must be less than 5 m
---context BasicPropertyUnit inv:
---self.getBuildings()->forAll(bP | self.getBuildings()->forAll(bP2 | bP.getFootprint().touches(bP2.getFootprint()) or bP.getFootprint().distance(bP2.getFootprint()) < 5))
+-- Rule 3 : Distance between two non contiguous building must be greater than 5 m
+context BasicPropertyUnit inv:
+self.getBuildings()->forAll(bP | self.getBuildings()->forAll(bP2 | bP.getFootprint().touches(bP2.getFootprint()) or bP.getFootprint().distance(bP2.getFootprint()) < 5))
 
 -- Rule 4 : Building area cannot exceed 75 % of the parcel surface
 context BasicPropertyUnit inv:

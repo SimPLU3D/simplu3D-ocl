@@ -11,6 +11,7 @@ import fr.ign.cogit.simplu3d.rjmcmc.cuboid.geometry.impl.AbstractSimpleBuilding;
 import fr.ign.rjmcmc.configuration.ConfigurationModificationPredicate;
 import tudresden.ocl20.pivot.modelinstancetype.types.IModelInstanceObject;
 
+
 /**
  * 
  * This software is released under the licence CeCILL
@@ -45,6 +46,7 @@ public class ModelInstanceGraphConfigurationModificationPredicate<O extends Abst
 	VeryFastRuleChecker vFR;
 
 	public VeryFastRuleChecker getRuleChecker() {
+		
 		return vFR;
 	}
 
@@ -60,6 +62,7 @@ public class ModelInstanceGraphConfigurationModificationPredicate<O extends Abst
 
 	public boolean check(ModelInstanceGraphConfiguration<O> c, ModelInstanceModification<O> m, boolean cancelUpdate) {
 
+		
 		List<IModelInstanceObject> list = c.update(m);
 
 		boolean result = this.vFR.check(list);

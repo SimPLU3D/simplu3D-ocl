@@ -58,12 +58,10 @@
 	<!--  Number of iterations -->
 	<!-- Indicates if it is an absolute number of iteration or a stability-->
 	<!-- end test condition. -->
-	<param key="isAbsoluteNumber" value="false" />
-	<!-- Number of iterations-->
-	<param key="nbiter" value="100000" />
-	<!-- Variation allowed to stop if stability end test is chosen-->
-	<param key="delta" value="5" />
-
+        <param key="end_test_type" value="composite" />
+        <param key="absolute_nb_iter" value="2000000" />
+        <param key="relative_nb_iter" value="50000" />
+        <param key="delta" value="5" />
 
 	<param key="poisson" value="20" />
 
@@ -79,7 +77,7 @@
 	<!-- Warning : in this case Java3D binaries have to -->
 	<!-- be precised in -Djava.library.path (see ) -->
 	<!-- -Djava.library.path="/home/mickael/data/mbrasebin/workspace/simPLU3D/simplu3D/lib/native_libraries/linux-amd64/" -->
-	<param key="visitorviewer" value="true" />
+	<param key="visitorviewer" value="false" />
 	<param key="background_img" value="background3D.png" />
 	<param key="showbackground" value="true" />
 	<param key="xminbg" value="1052572.48956" />
