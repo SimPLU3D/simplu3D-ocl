@@ -1,11 +1,11 @@
 # Simplu3D-ocl
 
-[![Build Status](https://travis-ci.org/IGNF/simplu3D-ocl.svg?branch=master)](https://travis-ci.org/IGNF/simplu3D-ocl)
+[![Build Status](https://travis-ci.org/SimPLU3D/simplu3D-ocl.svg?branch=master)](https://travis-ci.org/SimPLU3D/simplu3D-ocl)
 
 Introduction
 ---------------------
 
-This research library is developed as part of [COGIT laboratory](http://recherche.ign.fr/labos/cogit/accueilCOGIT.php) researches concerning the checking of local urban regulation. This regulation is modelled with OCL constraints. This project uses the model implemented in [simplu3d-rules project](https://github.com/IGNF/simplu3d-rules) and the checking processed can be plugged with building generation process of the [simplu3d project](https://github.com/IGNF/simplu3d).
+This research library is developed as part of [COGIT laboratory](http://recherche.ign.fr/labos/cogit/accueilCOGIT.php) researches concerning the checking of local urban regulation. This regulation is modelled with OCL constraints. This project uses the model implemented in [simplu3d-rules project](https://github.com/SimPLU3D/simplu3d-rules) and the checking processed can be plugged with building generation process of the [simplu3d project](https://github.com/SimPLU3D/simplu3d).
 
 
 
