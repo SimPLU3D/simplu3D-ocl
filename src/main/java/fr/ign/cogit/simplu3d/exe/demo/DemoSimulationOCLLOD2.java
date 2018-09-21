@@ -18,6 +18,8 @@ import fr.ign.cogit.simplu3d.rjmcmc.cuboid.configuration.ModelInstanceGraphConfi
 import fr.ign.cogit.simplu3d.rjmcmc.cuboid.configuration.ModelInstanceGraphConfigurationModificationPredicate;
 import fr.ign.cogit.simplu3d.rjmcmc.generic.object.ISimPLU3DPrimitive;
 import fr.ign.cogit.simplu3d.rjmcmc.paramshp.geometry.impl.LBuildingWithRoof;
+import fr.ign.cogit.simplu3d.util.SimpluParameters;
+import fr.ign.cogit.simplu3d.util.SimpluParametersJSON;
 import fr.ign.mpp.configuration.GraphVertex;
 import fr.ign.parameters.Parameters;
 import fr.ign.random.Random;
@@ -48,7 +50,7 @@ public class DemoSimulationOCLLOD2 {
 		// File that determines parameters for the simulator (inputs of the
 		// optimization algorithm - section 5 of the article)
 		File f = new File(folderIn + "building_parameters_project_lshape.xml");
-		Parameters p = Parameters.unmarshall(f);
+		SimpluParameters p = new SimpluParametersJSON(f);
 
 
 		// Writing the output

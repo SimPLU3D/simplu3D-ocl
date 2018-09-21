@@ -17,8 +17,9 @@ import fr.ign.cogit.simplu3d.optimizer.ocl.OCLBuildingsCuboidFinalDirectRejectio
 import fr.ign.cogit.simplu3d.rjmcmc.cuboid.configuration.ModelInstanceGraphConfiguration;
 import fr.ign.cogit.simplu3d.rjmcmc.cuboid.configuration.ModelInstanceGraphConfigurationModificationPredicate;
 import fr.ign.cogit.simplu3d.rjmcmc.cuboid.geometry.impl.Cuboid;
+import fr.ign.cogit.simplu3d.util.SimpluParameters;
+import fr.ign.cogit.simplu3d.util.SimpluParametersJSON;
 import fr.ign.mpp.configuration.GraphVertex;
-import fr.ign.parameters.Parameters;
 
 public class BasicOCLSimulator {
 
@@ -26,7 +27,7 @@ public class BasicOCLSimulator {
 
 		String shapeFileOut = "/home/mickael/temp/shapeout.shp";
 
-		Parameters p = Parameters.unmarshall(new File(
+		SimpluParameters p = new SimpluParametersJSON(new File(
 				"src/main/resources/fr/ign/cogit/simplu3d/scenario/building_parameters_project_expthese_1.xml"));
 
 		EnvironnementOCL env = LoaderSHPOCL.loadNoDTM("src/main/resources/fr/ign/cogit/simplu3d/data/");

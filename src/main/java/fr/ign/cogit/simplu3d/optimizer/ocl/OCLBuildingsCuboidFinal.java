@@ -38,6 +38,7 @@ import fr.ign.cogit.simplu3d.rjmcmc.generic.visitor.FilmVisitor;
 import fr.ign.cogit.simplu3d.rjmcmc.generic.visitor.ShapefileVisitor;
 import fr.ign.cogit.simplu3d.rjmcmc.generic.visitor.StatsVisitor;
 import fr.ign.cogit.simplu3d.rjmcmc.generic.visitor.ViewerVisitor;
+import fr.ign.cogit.simplu3d.util.SimpluParameters;
 import fr.ign.mpp.DirectSampler;
 import fr.ign.mpp.kernel.KernelFactory;
 import fr.ign.mpp.kernel.ObjectBuilder;
@@ -101,7 +102,7 @@ public class OCLBuildingsCuboidFinal {
 		this.deltaConf = deltaConf;
 	}
 
-	public ModelInstanceGraphConfiguration<Cuboid> process(BasicPropertyUnit bpu, Parameters p, EnvironnementOCL env,
+	public ModelInstanceGraphConfiguration<Cuboid> process(BasicPropertyUnit bpu, SimpluParameters p, EnvironnementOCL env,
 			int id) {
 		// Géométrie de l'unité foncière sur laquelle porte la génération
 		IGeometry geom = bpu.generateGeom().buffer(1);
@@ -213,7 +214,7 @@ public class OCLBuildingsCuboidFinal {
 	// Initialisation des visiteurs
 	// nbdump => affichage dans la console
 	// nbsave => sauvegarde en shapefile
-	static void init_visitor(Parameters p,
+	static void init_visitor(SimpluParameters p,
 			Visitor<ModelInstanceGraphConfiguration<Cuboid>, ModelInstanceModification<Cuboid>> v) {
 		v.init(p.getInteger("nbdump"), p.getInteger("nbsave"));
 	}
@@ -233,7 +234,7 @@ public class OCLBuildingsCuboidFinal {
 	 * @return la configuration chargée, c'est à dire la formulation énergétique
 	 *         prise en compte
 	 */
-	public static ModelInstanceGraphConfiguration<Cuboid> create_configuration(Parameters p, Geometry geom,
+	public static ModelInstanceGraphConfiguration<Cuboid> create_configuration(SimpluParameters p, Geometry geom,
 			BasicPropertyUnit bpu, IModelInstance modelInstance) {
 		// Énergie constante : à la création d'un nouvel objet
 		ConstantEnergy<Cuboid, Cuboid> energyCreation = new ConstantEnergy<Cuboid, Cuboid>(p.getDouble("energy"));
@@ -276,7 +277,7 @@ public class OCLBuildingsCuboidFinal {
 	 * @return
 	 */
 	static Sampler<ModelInstanceGraphConfiguration<Cuboid>, ModelInstanceModification<Cuboid>> create_sampler(
-			RandomGenerator rng, Parameters p, BasicPropertyUnit bpU,
+			RandomGenerator rng, SimpluParameters p, BasicPropertyUnit bpU,
 			ModelInstanceGraphConfigurationPredicate<Cuboid> pred) {
 		// Un vecteur ?????
 		double mindim = p.getDouble("mindim");
@@ -357,11 +358,11 @@ public class OCLBuildingsCuboidFinal {
 		return rs;
 	}
 
-	private static EndTest create_end_test(Parameters p) {
+	private static EndTest create_end_test(SimpluParameters p) {
 		return new MaxIterationEndTest(p.getInteger("nbiter"));
 	}
 
-	private EndTest create_end_test_stability(Parameters p) {
+	private EndTest create_end_test_stability(SimpluParameters p) {
 		double loc_deltaconf;
 		if (Double.isNaN(this.deltaConf)) {
 			loc_deltaconf = p.getDouble("delta");
@@ -371,7 +372,7 @@ public class OCLBuildingsCuboidFinal {
 		return new StabilityEndTest<Cuboid>(p.getInteger("nbiter"), loc_deltaconf);
 	}
 
-	private Schedule<SimpleTemperature> create_schedule(Parameters p) {
+	private Schedule<SimpleTemperature> create_schedule(SimpluParameters p) {
 		double coefDef = 0;
 		if (Double.isNaN(this.coeffDec)) {
 			coefDef = p.getDouble("deccoef");

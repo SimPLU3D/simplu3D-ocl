@@ -17,6 +17,8 @@ import fr.ign.cogit.simplu3d.optimizer.ocl.OCLBuildingsCuboidFinalDirectRejectio
 import fr.ign.cogit.simplu3d.rjmcmc.cuboid.configuration.ModelInstanceGraphConfiguration;
 import fr.ign.cogit.simplu3d.rjmcmc.cuboid.configuration.ModelInstanceGraphConfigurationModificationPredicate;
 import fr.ign.cogit.simplu3d.rjmcmc.cuboid.geometry.impl.Cuboid;
+import fr.ign.cogit.simplu3d.util.SimpluParameters;
+import fr.ign.cogit.simplu3d.util.SimpluParametersJSON;
 import fr.ign.mpp.configuration.GraphVertex;
 import fr.ign.parameters.Parameters;
 
@@ -46,7 +48,7 @@ public class DemoSimulationOCL {
 		// File that determines parameters for the simulator (inputs of the
 		// optimization algorithm - section 5 of the article)
 		File f = new File(folderIn + "simulation_parameters.xml");
-		Parameters p = Parameters.unmarshall(f);
+		SimpluParameters p = new SimpluParametersJSON(f);
 
 		int count = 0;
 		// Writing the output

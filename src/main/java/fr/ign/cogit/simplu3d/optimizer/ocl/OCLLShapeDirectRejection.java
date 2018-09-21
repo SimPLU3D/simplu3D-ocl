@@ -37,6 +37,7 @@ import fr.ign.cogit.simplu3d.rjmcmc.generic.visitor.ViewerVisitor;
 import fr.ign.cogit.simplu3d.rjmcmc.paramshp.builder.LBuildingWithRoofBuilder;
 import fr.ign.cogit.simplu3d.rjmcmc.paramshp.geometry.impl.LBuildingWithRoof;
 import fr.ign.cogit.simplu3d.rjmcmc.paramshp.transform.MoveLShapeBuilding;
+import fr.ign.cogit.simplu3d.util.SimpluParameters;
 import fr.ign.mpp.DirectRejectionSampler;
 import fr.ign.mpp.DirectSampler;
 import fr.ign.mpp.kernel.KernelFactory;
@@ -86,7 +87,7 @@ public class OCLLShapeDirectRejection extends DefaultSimPLU3DOptimizer<LBuilding
 	}
 
 	public ModelInstanceGraphConfiguration<LBuildingWithRoof> process(RandomGenerator rG, BasicPropertyUnit bpu,
-			Parameters p, EnvironnementOCL env,
+			SimpluParameters p, EnvironnementOCL env,
 			ModelInstanceGraphConfigurationModificationPredicate<LBuildingWithRoof> pred, int id, IPolygon pol) {
 		// Géométrie de l'unité foncière sur laquelle porte la génération
 		IGeometry geom = bpu.generateGeom().buffer(1);
@@ -114,7 +115,7 @@ public class OCLLShapeDirectRejection extends DefaultSimPLU3DOptimizer<LBuilding
 	}
 
 	public static CompositeVisitor<ModelInstanceGraphConfiguration<LBuildingWithRoof>, ModelInstanceModification<LBuildingWithRoof>> prepare(
-			Parameters p, int id, EnvironnementOCL env) {
+			SimpluParameters p, int id, EnvironnementOCL env) {
 		List<Visitor<ModelInstanceGraphConfiguration<LBuildingWithRoof>, ModelInstanceModification<LBuildingWithRoof>>> list = new ArrayList<>();
 
 		if (p.getBoolean("outputstreamvisitor")) {
@@ -182,7 +183,7 @@ public class OCLLShapeDirectRejection extends DefaultSimPLU3DOptimizer<LBuilding
 		return mVisitor;
 	}
 
-	public static ModelInstanceGraphConfiguration<LBuildingWithRoof> create_configuration(Parameters p, Geometry geom,
+	public static ModelInstanceGraphConfiguration<LBuildingWithRoof> create_configuration(SimpluParameters p, Geometry geom,
 			BasicPropertyUnit bpu, IModelInstance modelInstance) {
 		// Énergie constante : à la création d'un nouvel objet
 		ConstantEnergy<LBuildingWithRoof, LBuildingWithRoof> energyCreation = new ConstantEnergy<LBuildingWithRoof, LBuildingWithRoof>(
@@ -223,14 +224,12 @@ public class OCLLShapeDirectRejection extends DefaultSimPLU3DOptimizer<LBuilding
 	/**
 	 * Sampler
 	 * 
-	 * @param p
-	 *            les paramètres chargés depuis le fichier xmlg
-	 * @param r
-	 *            l'enveloppe dans laquelle on génère les positions
+	 * @param p les paramètres chargés depuis le fichier xmlg
+	 * @param r l'enveloppe dans laquelle on génère les positions
 	 * @return
 	 */
 	public Sampler<ModelInstanceGraphConfiguration<LBuildingWithRoof>, ModelInstanceModification<LBuildingWithRoof>> create_sampler(
-			RandomGenerator rng, Parameters p, BasicPropertyUnit bpU,
+			RandomGenerator rng, SimpluParameters p, BasicPropertyUnit bpU,
 			ModelInstanceGraphConfigurationModificationPredicate<LBuildingWithRoof> pred, IGeometry polygon) {
 
 		// On créé les bornes min et max pour le sampler (10 paramètres dans le
