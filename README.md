@@ -35,7 +35,7 @@ Furthermore, we are interested in every feedbacks about this library if you find
 Test classes
 ---------------------
 
-**For checking rules **
+**For checking rules**
 
 A test class TestOCLConstraint is implemented in the package : fr.ign.cogit.simplu3d.test.checker.
 
@@ -46,7 +46,7 @@ public class TestOCLConstraint {
   public void testInterpretation() throws Exception {
     //Load an environnement with default data according to integration process described in Simplu3D-rules project
     EnvironnementOCL env = LoaderSHPOCL.load("src/test/resources/fr/ign/cogit/simplu3d/data/");
-    
+
      //Rules are checked in each BasicPropertyUnit
     for (BasicPropertyUnit bPU : env.getBpU()) {
       //A checker is instanciated according to the relevant UrbanZone
@@ -142,5 +142,3 @@ Acknowledgments
 + This research is supported by the French National Mapping Agency ([IGN](http://www.ign.fr))
 + It is partially funded by the FUI TerraMagna project and by Île-de-France
 Région in the context of [e-PLU projet](www.e-PLU.fr)
-
-
