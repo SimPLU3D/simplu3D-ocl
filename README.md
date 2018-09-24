@@ -60,7 +60,7 @@ public class TestOCLConstraint {
 ```
 A large set of rules, from Strasbourg Local Urban Plan, is available in the file /simplu3d-ocl/src/main/resources/fr/ign/cogit/simplu3d/ocl_test
 
-**For building simulation **
+**For building simulation**
 
 A test class (fr.ign.cogit.simplu3d.exe.demo.DemoSimulationOCL) is implemented according to a simulation presented in a paper (under submission). All the used resources, including geographic data, simulation parameters and OCL rules are available in the "src/main/resources/fr/ign/cogit/simplu3d/datademo/" folder.
 
