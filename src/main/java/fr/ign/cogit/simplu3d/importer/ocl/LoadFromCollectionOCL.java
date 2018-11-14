@@ -40,8 +40,9 @@ public class LoadFromCollectionOCL {
 			AbstractDTM dtm) throws Exception {
 
 		EnvironnementOCL envOCL = EnvironnementOCL.getInstance();
-
-		LoadFromCollection.load(featPLU, zoneColl, parcelleColl, voirieColl, batiColl, prescriptions, ruleFolder, dtm,
+		envOCL.setFolder(ruleFolder);
+		
+		LoadFromCollection.load(featPLU, zoneColl, parcelleColl, voirieColl, batiColl, prescriptions, dtm,
 				envOCL);
 
 		if (ruleFolder != null) {

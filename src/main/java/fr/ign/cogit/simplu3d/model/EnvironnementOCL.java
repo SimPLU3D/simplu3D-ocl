@@ -12,6 +12,18 @@ public class EnvironnementOCL extends Environnement {
 
 	private static EnvironnementOCL env = null;
 
+	//The folder where OCL rules will be stored
+	private String folder = "";
+	
+	
+	public String getFolder() {
+		return folder;
+	}
+
+	public void setFolder(String folder) {
+		this.folder = folder;
+	}
+
 	private IFeatureCollection<UrbaZoneOCL> urbaZoneOCL = null;
 
 	public IFeatureCollection<UrbaZoneOCL> getUrbaZoneOCL() {

@@ -83,7 +83,7 @@ public class ImportModelInstanceEnvironnement {
       if (sp.getGeom() == null) {
     	  logger.error("SubParcel empty : "+ sp.toString());
       }
-      modelInstance.addModelInstanceElement(sp.getLod2MultiSurface());
+
       modelInstance.addModelInstanceElement(sp.getGeom());
 
       // Gestion des bordures

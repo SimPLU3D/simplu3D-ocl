@@ -30,6 +30,9 @@ import fr.ign.cogit.simplu3d.model.EnvironnementOCL;
  **/
 public class LoaderSHPOCL extends LoaderSHP {
 
+	
+	
+	
 
 
 	public EnvironnementOCL getEnvironnement(String folder) throws Exception {
@@ -44,7 +47,7 @@ public class LoaderSHPOCL extends LoaderSHP {
 
 	public static EnvironnementOCL loadNoDTM(String folder) throws Exception {
 		EnvironnementOCL env = EnvironnementOCL.getInstance();
-		env.folder = folder;
+		env.setFolder( folder);
 
 		// Chargement des fichiers
 		IFeatureCollection<IFeature> pluColl = ShapefileReader.read(folder + NOM_FICHIER_PLU);
@@ -73,7 +76,7 @@ public class LoaderSHPOCL extends LoaderSHP {
 			throws Exception {
 
 		EnvironnementOCL env = EnvironnementOCL.getInstance();
-		env.folder = folder;
+		env.setFolder(folder);
 
 		// Chargement des fichiers
 

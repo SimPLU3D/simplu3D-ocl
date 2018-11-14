@@ -191,7 +191,7 @@ public class GraphConfigurationWithPredicate<T extends AbstractSimpleBuilding>
 	private void createLink(AbstractBuilding aB, BasicPropertyUnit bPU) {
 		if (aB instanceof Building) {
 			bPU.getBuildings().add((Building) aB);
-			aB.setbPU(bPU);
+			((Building) aB).setbPU(bPU);
 		}
 		for (CadastralParcel cP : bPU.getCadastralParcels()) {
 			for (SubParcel cB : cP.getSubParcels()) {
@@ -203,7 +203,7 @@ public class GraphConfigurationWithPredicate<T extends AbstractSimpleBuilding>
 	private void removeLink(AbstractBuilding aB, BasicPropertyUnit bPU) {
 		if (aB instanceof Building) {
 			bPU.getBuildings().remove((Building) aB);
-			aB.setbPU(null);
+			((Building) aB).setbPU(null);
 		}
 		for (CadastralParcel cP : bPU.getCadastralParcels()) {
 			for (SubParcel cB : cP.getSubParcels()) {

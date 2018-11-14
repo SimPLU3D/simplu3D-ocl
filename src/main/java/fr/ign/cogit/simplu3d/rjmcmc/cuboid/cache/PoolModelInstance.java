@@ -157,7 +157,7 @@ public class PoolModelInstance {
 
     if (aB instanceof Building) {
       bPU.getBuildings().add((Building) aB);
-      aB.setbPU(bPU);
+      ((Building)aB).setbPU(bPU);
     }
 
     for (CadastralParcel cP : bPU.getCadastralParcels()) {
@@ -174,7 +174,7 @@ public class PoolModelInstance {
 
     if (aB instanceof Building) {
       bPU.getBuildings().remove((Building) aB);
-      aB.setbPU(null);
+      ((Building)aB).setbPU(null);
     }
 
     for (CadastralParcel cP : bPU.getCadastralParcels()) {
