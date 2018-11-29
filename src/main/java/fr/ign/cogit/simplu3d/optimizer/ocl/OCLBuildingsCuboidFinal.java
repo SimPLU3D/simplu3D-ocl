@@ -38,12 +38,12 @@ import fr.ign.cogit.simplu3d.rjmcmc.generic.visitor.FilmVisitor;
 import fr.ign.cogit.simplu3d.rjmcmc.generic.visitor.ShapefileVisitor;
 import fr.ign.cogit.simplu3d.rjmcmc.generic.visitor.StatsVisitor;
 import fr.ign.cogit.simplu3d.rjmcmc.generic.visitor.ViewerVisitor;
+import fr.ign.cogit.simplu3d.rjmcmc.paramshp.geometry.impl.LBuildingWithRoof;
 import fr.ign.cogit.simplu3d.util.SimpluParameters;
 import fr.ign.mpp.DirectSampler;
 import fr.ign.mpp.kernel.KernelFactory;
 import fr.ign.mpp.kernel.ObjectBuilder;
 import fr.ign.mpp.kernel.UniformBirth;
-import fr.ign.parameters.Parameters;
 import fr.ign.random.Random;
 import fr.ign.rjmcmc.acceptance.MetropolisAcceptance;
 import fr.ign.rjmcmc.distribution.PoissonDistribution;
@@ -102,8 +102,8 @@ public class OCLBuildingsCuboidFinal {
 		this.deltaConf = deltaConf;
 	}
 
-	public ModelInstanceGraphConfiguration<Cuboid> process(BasicPropertyUnit bpu, SimpluParameters p, EnvironnementOCL env,
-			int id) {
+	public ModelInstanceGraphConfiguration<Cuboid> process(BasicPropertyUnit bpu, SimpluParameters p,
+			EnvironnementOCL env, int id) {
 		// Géométrie de l'unité foncière sur laquelle porte la génération
 		IGeometry geom = bpu.generateGeom().buffer(1);
 		ModelInstanceGraphConfigurationPredicate<Cuboid> pred = new ModelInstanceGraphConfigurationPredicate<Cuboid>(
@@ -111,7 +111,7 @@ public class OCLBuildingsCuboidFinal {
 		// Définition de la fonction d'optimisation (on optimise en décroissant)
 		// relative au volume
 		ModelInstanceGraphConfiguration<Cuboid> conf = null;
-		
+
 		try {
 			conf = create_configuration(p, AdapterFactory.toGeometry(new GeometryFactory(), geom), bpu,
 					pred.getRuleChecker().getlModeInstance().get(0));
@@ -137,7 +137,7 @@ public class OCLBuildingsCuboidFinal {
 			conf.deltaEnergy(m);
 			// conf.apply(m);
 			m.apply(conf);
-			
+
 		}
 		// EndTest<Cuboid2, Configuration<Cuboid2>, SimpleTemperature,
 		// Sampler<Cuboid2, Configuration<Cuboid2>, SimpleTemperature>> end =
@@ -162,7 +162,11 @@ public class OCLBuildingsCuboidFinal {
 			list.add(shpVisitor);
 		}
 		if (p.getBoolean("visitorviewer")) {
-			ViewerVisitor<Cuboid, ModelInstanceGraphConfiguration<Cuboid>, ModelInstanceModification<Cuboid>> visitorViewer = new ViewerVisitor<>(env,"" + id, p);
+			Color c = new Color(p.getInteger("filmvisitorr"), p.getInteger("filmvisitorg"),
+					p.getInteger("filmvisitorb"));
+
+			ViewerVisitor<Cuboid, ModelInstanceGraphConfiguration<Cuboid>, ModelInstanceModification<Cuboid>> visitorViewer = new ViewerVisitor<>(
+					env, "" + id, p, c);
 			list.add(visitorViewer);
 		}
 
@@ -227,10 +231,8 @@ public class OCLBuildingsCuboidFinal {
 
 	// Création de la configuration
 	/**
-	 * @param p
-	 *            paramètres importés depuis le fichier XML
-	 * @param bpu
-	 *            l'unité foncière considérée
+	 * @param p   paramètres importés depuis le fichier XML
+	 * @param bpu l'unité foncière considérée
 	 * @return la configuration chargée, c'est à dire la formulation énergétique
 	 *         prise en compte
 	 */
@@ -270,10 +272,8 @@ public class OCLBuildingsCuboidFinal {
 	/**
 	 * Sampler
 	 * 
-	 * @param p
-	 *            les paramètres chargés depuis le fichier xml
-	 * @param r
-	 *            l'enveloppe dans laquelle on génère les positions
+	 * @param p les paramètres chargés depuis le fichier xml
+	 * @param r l'enveloppe dans laquelle on génère les positions
 	 * @return
 	 */
 	static Sampler<ModelInstanceGraphConfiguration<Cuboid>, ModelInstanceModification<Cuboid>> create_sampler(

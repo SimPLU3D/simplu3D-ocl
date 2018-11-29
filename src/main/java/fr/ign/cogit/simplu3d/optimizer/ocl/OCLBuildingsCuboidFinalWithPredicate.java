@@ -39,6 +39,7 @@ import fr.ign.cogit.simplu3d.rjmcmc.generic.visitor.FilmVisitor;
 import fr.ign.cogit.simplu3d.rjmcmc.generic.visitor.ShapefileVisitor;
 import fr.ign.cogit.simplu3d.rjmcmc.generic.visitor.StatsVisitor;
 import fr.ign.cogit.simplu3d.rjmcmc.generic.visitor.ViewerVisitor;
+import fr.ign.cogit.simplu3d.rjmcmc.paramshp.geometry.impl.LBuildingWithRoof;
 import fr.ign.cogit.simplu3d.util.SimpluParameters;
 import fr.ign.mpp.DirectSampler;
 import fr.ign.mpp.kernel.KernelFactory;
@@ -161,8 +162,11 @@ public class OCLBuildingsCuboidFinalWithPredicate {
 			list.add(shpVisitor);
 		}
 		if (p.getBoolean("visitorviewer")) {
-			ViewerVisitor<Cuboid, ModelInstanceGraphConfiguration<Cuboid>, ModelInstanceModification<Cuboid>> visitorViewer = new ViewerVisitor<Cuboid, ModelInstanceGraphConfiguration<Cuboid>, ModelInstanceModification<Cuboid>>(
-					env, "" + id, p);
+			Color c = new Color(p.getInteger("filmvisitorr"), p.getInteger("filmvisitorg"),
+					p.getInteger("filmvisitorb"));
+
+			ViewerVisitor<Cuboid, ModelInstanceGraphConfiguration<Cuboid>, ModelInstanceModification<Cuboid>> visitorViewer = new ViewerVisitor<>(
+					env, "" + id, p, c);
 			list.add(visitorViewer);
 		}
 

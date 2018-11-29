@@ -42,7 +42,6 @@ import fr.ign.mpp.DirectRejectionSampler;
 import fr.ign.mpp.DirectSampler;
 import fr.ign.mpp.kernel.KernelFactory;
 import fr.ign.mpp.kernel.UniformBirth;
-import fr.ign.parameters.Parameters;
 import fr.ign.random.Random;
 import fr.ign.rjmcmc.acceptance.MetropolisAcceptance;
 import fr.ign.rjmcmc.distribution.PoissonDistribution;
@@ -131,8 +130,12 @@ public class OCLLShapeDirectRejection extends DefaultSimPLU3DOptimizer<LBuilding
 		}
 
 		if (p.getBoolean("visitorviewer")) {
+
+			Color c = new Color(p.getInteger("filmvisitorr"), p.getInteger("filmvisitorg"),
+					p.getInteger("filmvisitorb"));
+
 			ViewerVisitor<LBuildingWithRoof, ModelInstanceGraphConfiguration<LBuildingWithRoof>, ModelInstanceModification<LBuildingWithRoof>> visitorViewer = new ViewerVisitor<>(
-					env, "" + id, p);
+					env, "" + id, p, c);
 			list.add(visitorViewer);
 		}
 
@@ -183,8 +186,8 @@ public class OCLLShapeDirectRejection extends DefaultSimPLU3DOptimizer<LBuilding
 		return mVisitor;
 	}
 
-	public static ModelInstanceGraphConfiguration<LBuildingWithRoof> create_configuration(SimpluParameters p, Geometry geom,
-			BasicPropertyUnit bpu, IModelInstance modelInstance) {
+	public static ModelInstanceGraphConfiguration<LBuildingWithRoof> create_configuration(SimpluParameters p,
+			Geometry geom, BasicPropertyUnit bpu, IModelInstance modelInstance) {
 		// Énergie constante : à la création d'un nouvel objet
 		ConstantEnergy<LBuildingWithRoof, LBuildingWithRoof> energyCreation = new ConstantEnergy<LBuildingWithRoof, LBuildingWithRoof>(
 				p.getDouble("energy"));

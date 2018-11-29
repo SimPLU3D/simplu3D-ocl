@@ -41,6 +41,7 @@ import fr.ign.cogit.simplu3d.rjmcmc.generic.visitor.FilmVisitor;
 import fr.ign.cogit.simplu3d.rjmcmc.generic.visitor.ShapefileVisitor;
 import fr.ign.cogit.simplu3d.rjmcmc.generic.visitor.StatsVisitor;
 import fr.ign.cogit.simplu3d.rjmcmc.generic.visitor.ViewerVisitor;
+import fr.ign.cogit.simplu3d.rjmcmc.paramshp.geometry.impl.LBuildingWithRoof;
 import fr.ign.cogit.simplu3d.util.SimpluParameters;
 import fr.ign.mpp.DirectRejectionSampler;
 import fr.ign.mpp.DirectSampler;
@@ -166,8 +167,11 @@ public class OCLBuildingsCuboidFinalDirectRejection extends DefaultSimPLU3DOptim
 			list.add(shpVisitor);
 		}
 		if (p.getBoolean("visitorviewer")) {
-			Visitor<ModelInstanceGraphConfiguration<Cuboid>, ModelInstanceModification<Cuboid>> visitorViewer = new ViewerVisitor<Cuboid, ModelInstanceGraphConfiguration<Cuboid>, ModelInstanceModification<Cuboid>>(env, 
-					"" + id, p );
+			Color c = new Color(p.getInteger("filmvisitorr"), p.getInteger("filmvisitorg"),
+					p.getInteger("filmvisitorb"));
+
+			ViewerVisitor<Cuboid, ModelInstanceGraphConfiguration<Cuboid>, ModelInstanceModification<Cuboid>> visitorViewer = new ViewerVisitor<>(
+					env, "" + id, p, c);
 			list.add(visitorViewer);
 		}
 
