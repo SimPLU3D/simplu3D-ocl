@@ -1,7 +1,8 @@
 sudo: required
+dist: bionic
 language: java
 jdk:
-- oraclejdk14
+- openjdk10
 
 install: true
 
